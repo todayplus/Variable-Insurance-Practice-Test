@@ -1,0 +1,1600 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>변액보험 판매관리사 · 제1회 실전모의고사</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+:root{
+  --bg:#F3F6F4; --surface:#FFFFFF; --surface2:#ECF2EE;
+  --ink:#17241F; --muted:#63756E; --line:#E0E8E2;
+  --primary:#0C6B57; --primary-soft:#E0F0E9; --primary-ink:#F2FAF7;
+  --wrong:#C43D22; --wrong-soft:#FBEDE7; --star:#DE9500;
+  --shadow:0 1px 2px rgba(23,36,31,.05),0 8px 24px rgba(23,36,31,.06);
+  color-scheme:light;
+}
+[data-theme="dark"]{
+  --bg:#0D1916; --surface:#152420; --surface2:#1C2E28;
+  --ink:#E6EFEA; --muted:#93A69E; --line:#273B34;
+  --primary:#45C39F; --primary-soft:rgba(69,195,159,.13); --primary-ink:#06231C;
+  --wrong:#E9755A; --wrong-soft:rgba(233,117,90,.15); --star:#F2B93B;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.25);
+  color-scheme:dark;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{
+  font-family:'Pretendard Variable',Pretendard,-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Noto Sans KR','Malgun Gothic',sans-serif;
+  background:var(--bg);color:var(--ink);line-height:1.55;letter-spacing:-.01em;
+  font-variant-numeric:tabular-nums;
+}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;-webkit-tap-highlight-color:transparent}
+input,textarea,select{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--primary);outline-offset:2px;border-radius:6px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+#wrap{max-width:760px;margin:0 auto;min-height:100dvh;display:flex;flex-direction:column;padding-bottom:calc(78px + env(safe-area-inset-bottom))}
+#top{
+  position:sticky;top:0;z-index:30;display:flex;align-items:center;justify-content:space-between;
+  padding:12px 16px;background:color-mix(in srgb,var(--bg) 86%,transparent);
+  backdrop-filter:blur(10px);border-bottom:1px solid var(--line);
+}
+.brand{display:flex;align-items:center;gap:10px;min-width:0}
+.logo{width:38px;height:38px;flex:none;border-radius:11px;background:var(--primary);color:var(--primary-ink);
+  display:grid;place-items:center;font-weight:800;font-size:17px}
+.brand h1{font-size:15px;font-weight:800;letter-spacing:-.02em}
+.brand p{font-size:11.5px;color:var(--muted);margin-top:1px}
+.iconbtn{width:38px;height:38px;border-radius:11px;display:grid;place-items:center;color:var(--muted);
+  border:1px solid var(--line);background:var(--surface)}
+.iconbtn:hover{color:var(--ink)}
+.icn{width:20px;height:20px;display:block}
+.icn svg{width:100%;height:100%;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+
+main{flex:1;padding:18px 16px 104px}
+
+/* ---- tab bar ---- */
+#tabbar{position:fixed;bottom:0;left:0;right:0;z-index:30;
+  background:color-mix(in srgb,var(--surface) 92%,transparent);backdrop-filter:blur(12px);
+  border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom)}
+#tabbar .in{max-width:760px;margin:0 auto;display:flex}
+.tab{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:9px 0 10px;
+  font-size:10.5px;font-weight:600;color:var(--muted);position:relative}
+.tab .icn{width:21px;height:21px}
+.tab.on{color:var(--primary)}
+.tab.on::before{content:"";position:absolute;top:0;width:26px;height:3px;border-radius:0 0 4px 4px;background:var(--primary)}
+.tab .dot{position:absolute;top:7px;margin-left:26px;min-width:16px;height:16px;border-radius:8px;background:var(--wrong);
+  color:#fff;font-size:9.5px;font-weight:700;display:grid;place-items:center;padding:0 4px}
+
+/* ---- common ---- */
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow)}
+.pad{padding:18px}
+.sec-title{font-size:13px;font-weight:800;letter-spacing:.02em;color:var(--muted);text-transform:uppercase;
+  display:flex;align-items:center;gap:8px;margin:22px 2px 10px}
+.sec-title::after{content:"";flex:1;height:1px;background:var(--line)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;font-weight:700;border-radius:12px;
+  padding:12px 18px;font-size:14.5px;border:1px solid var(--line);background:var(--surface);transition:filter .15s, transform .05s}
+.btn:active{transform:scale(.98)}
+.btn.pri{background:var(--primary);border-color:var(--primary);color:var(--primary-ink)}
+.btn.pri:hover{filter:brightness(1.07)}
+.btn.ghost{background:transparent}
+.btn.danger{color:var(--wrong);border-color:color-mix(in srgb,var(--wrong) 35%,var(--line))}
+.btn.wide{width:100%}
+.btn.sm{padding:7px 12px;font-size:12.5px;border-radius:9px}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.chip{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:600;padding:5px 11px;border-radius:999px;
+  border:1px solid var(--line);background:var(--surface);color:var(--muted);white-space:nowrap}
+.chip.on{background:var(--primary);border-color:var(--primary);color:var(--primary-ink)}
+.chip.warn{color:var(--star);border-color:color-mix(in srgb,var(--star) 40%,var(--line));background:color-mix(in srgb,var(--star) 8%,var(--surface))}
+.chip.row{display:flex;overflow-x:auto;gap:7px;padding:2px 0 4px;scrollbar-width:none}
+.chip.row::-webkit-scrollbar{display:none}
+.badge{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:700;padding:2.5px 8px;border-radius:999px}
+.badge.ok{background:var(--primary-soft);color:var(--primary)}
+.badge.no{background:var(--wrong-soft);color:var(--wrong)}
+.muted{color:var(--muted)}
+.hr{height:1px;background:var(--line);margin:14px 0}
+
+/* ---- home ---- */
+.hero{padding:22px 20px;background:linear-gradient(135deg,var(--primary) 0%,color-mix(in srgb,var(--primary) 78%,#06342B) 100%);
+  color:var(--primary-ink);border:0}
+.hero .eyebrow{font-size:12px;font-weight:700;opacity:.75;letter-spacing:.06em}
+.hero h2{font-size:24px;font-weight:800;letter-spacing:-.02em;margin:5px 0 3px}
+.hero .meta{font-size:13px;opacity:.85;font-weight:500}
+.hero .go{margin-top:16px;width:100%;padding:14px;border-radius:13px;background:var(--primary-ink);color:var(--primary);
+  font-weight:800;font-size:15.5px;border:0;display:flex;align-items:center;justify-content:center;gap:8px}
+.hero .go:hover{filter:brightness(1.03)}
+.resume{display:flex;align-items:center;gap:12px;padding:13px 15px;border-radius:13px;margin-bottom:14px;
+  background:color-mix(in srgb,var(--star) 10%,var(--surface));border:1px solid color-mix(in srgb,var(--star) 35%,var(--line));
+  font-size:13.5px;font-weight:600}
+.resume .btn{margin-left:auto;flex:none}
+.qgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.qact{display:flex;flex-direction:column;gap:3px;padding:15px 16px;text-align:left;border-radius:14px;
+  background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow)}
+.qact b{font-size:14.5px;font-weight:700}
+.qact span{font-size:12px;color:var(--muted)}
+.qact .icn{margin-bottom:7px;color:var(--primary)}
+.notice{display:flex;gap:10px;padding:13px 15px;border-radius:13px;font-size:12.5px;line-height:1.5;
+  background:color-mix(in srgb,var(--star) 7%,var(--surface));border:1px dashed color-mix(in srgb,var(--star) 45%,var(--line));color:var(--muted)}
+.notice .icn{flex:none;color:var(--star);margin-top:2px}
+.statrow{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.stat{padding:13px 14px;border-radius:13px;background:var(--surface);border:1px solid var(--line)}
+.stat b{display:block;font-size:21px;font-weight:800;letter-spacing:-.02em}
+.stat span{font-size:11.5px;color:var(--muted);font-weight:600}
+
+.hero .btnrow{display:flex;flex-direction:column;gap:8px;margin-top:16px}
+.go.alt{background:rgba(255,255,255,.12);color:var(--primary-ink);border:1px solid rgba(255,255,255,.35)}
+.go.alt:hover{filter:brightness(1.08)}
+.setlabel{font-size:12px;font-weight:800;color:var(--muted);margin:12px 2px 7px}
+.rlabel{font-size:12px;font-weight:800;color:var(--muted);margin-bottom:6px}
+
+/* ---- exam ---- */
+.xbar{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.xbar .prog{font-weight:800;font-size:14px}
+.timer{display:inline-flex;align-items:center;gap:6px;font-weight:800;font-size:14px;padding:7px 12px;border-radius:10px;
+  background:var(--surface);border:1px solid var(--line);margin-left:auto}
+.timer.low{color:var(--wrong);border-color:color-mix(in srgb,var(--wrong) 45%,var(--line));background:var(--wrong-soft)}
+.starr{margin-left:8px}
+.starbtn{color:var(--line-d,#C9D4CE);width:36px;height:36px;border-radius:10px;display:grid;place-items:center;border:1px solid var(--line);background:var(--surface)}
+.starbtn.on{color:var(--star)}
+.starbtn.on svg{fill:var(--star);stroke:var(--star)}
+.qhead{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.qno{font-weight:800;font-size:13px;color:var(--primary);background:var(--primary-soft);padding:3px 10px;border-radius:8px}
+.qtype{font-size:11.5px;font-weight:700;color:var(--muted)}
+.qtext{font-size:16.5px;font-weight:700;line-height:1.5;letter-spacing:-.01em;white-space:pre-wrap}
+.tbox{margin:12px 0;padding:12px 14px;border-radius:11px;background:var(--surface2);border:1px solid var(--line);
+  font-size:13.5px;font-weight:500;color:var(--ink)}
+.tbox div{padding:2px 0;white-space:pre-wrap}
+.opts{display:flex;flex-direction:column;gap:9px;margin-top:14px}
+.opt{display:flex;align-items:flex-start;gap:11px;text-align:left;padding:13px 15px;border-radius:13px;
+  border:1.5px solid var(--line);background:var(--surface);font-size:14.5px;font-weight:600;line-height:1.45;transition:border-color .12s, background .12s}
+.opt .mark{flex:none;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;
+  font-size:12.5px;font-weight:800;border:1.5px solid var(--line);color:var(--muted);margin-top:.5px}
+.opt:hover{border-color:var(--primary)}
+.opt.sel{border-color:var(--primary);background:var(--primary-soft)}
+.opt.sel .mark{background:var(--primary);border-color:var(--primary);color:var(--primary-ink)}
+.opt.good{border-color:var(--primary);background:var(--primary-soft)}
+.opt.good .mark{background:var(--primary);border-color:var(--primary);color:var(--primary-ink)}
+.opt.bad{border-color:var(--wrong);background:var(--wrong-soft)}
+.opt.bad .mark{background:var(--wrong);border-color:var(--wrong);color:#fff}
+.opt.lock{cursor:default}
+.opt .tail{margin-left:auto;flex:none;display:grid;place-items:center;color:var(--primary)}
+.opt.bad .tail{color:var(--wrong)}
+.ox{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+.ox .opt{justify-content:center;font-size:19px;font-weight:800;padding:18px}
+.expl{margin-top:14px;padding:14px 16px;border-radius:12px;border-left:4px solid var(--primary);
+  background:var(--primary-soft);font-size:13.5px;line-height:1.6;white-space:pre-wrap}
+.expl b{color:var(--primary)}
+.expl.none{border-left-color:var(--line);background:var(--surface2);color:var(--muted)}
+.xnav{position:fixed;bottom:62px;left:0;right:0;z-index:25;padding:10px 14px;
+  background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-top:1px solid var(--line)}
+.xnav .in{max-width:760px;margin:0 auto;display:flex;gap:9px}
+.xnav .btn{flex:1}
+.xnav .btn.omr{flex:0 0 108px}
+
+/* ---- OMR grid (signature) ---- */
+.omrgrid{display:grid;grid-template-columns:repeat(8,1fr);gap:6px}
+.omrgrid.g40{grid-template-columns:repeat(8,1fr)}
+.cell{aspect-ratio:1;display:grid;place-items:center;border-radius:9px;font-size:12.5px;font-weight:700;
+  border:1.5px solid var(--line);background:var(--surface);color:var(--muted);cursor:pointer}
+.cell.filled{background:var(--primary-soft);border-color:color-mix(in srgb,var(--primary) 45%,var(--line));color:var(--primary)}
+.cell.cur{outline:2.5px solid var(--primary);outline-offset:1.5px;color:var(--primary)}
+.cell.ok{background:color-mix(in srgb,var(--primary) 88%,#000 0%);border-color:var(--primary);color:var(--primary-ink)}
+.cell.no{background:var(--wrong);border-color:var(--wrong);color:#fff}
+.cell.blank{background:repeating-linear-gradient(45deg,var(--wrong-soft),var(--wrong-soft) 4px,var(--surface) 4px,var(--surface) 8px);border-color:var(--wrong);color:var(--wrong)}
+.cell.heat1{background:color-mix(in srgb,var(--wrong) 55%,var(--surface));border-color:transparent;color:#fff}
+.cell.heat2{background:color-mix(in srgb,var(--star) 45%,var(--surface));border-color:transparent}
+.cell.heat3{background:var(--primary-soft);border-color:transparent;color:var(--primary)}
+.cell.heat4{background:var(--primary);border-color:var(--primary);color:var(--primary-ink)}
+
+/* ---- sheet / modal / toast ---- */
+#sheet{position:fixed;inset:0;z-index:50;display:flex;align-items:flex-end;justify-content:center}
+#sheet.hidden,#modal.hidden,#toast.hidden{display:none}
+.sheet-bg{position:absolute;inset:0;background:rgba(10,20,17,.45)}
+.sheet-card{position:relative;width:100%;max-width:760px;max-height:78dvh;overflow:auto;background:var(--surface);
+  border-radius:20px 20px 0 0;padding:18px 18px 26px;box-shadow:0 -8px 30px rgba(0,0,0,.18)}
+.sheet-grip{width:42px;height:4px;border-radius:2px;background:var(--line);margin:0 auto 14px}
+#modal{position:fixed;inset:0;z-index:60;display:grid;place-items:center;padding:20px}
+.modal-bg{position:absolute;inset:0;background:rgba(10,20,17,.45)}
+.modal-card{position:relative;width:100%;max-width:430px;background:var(--surface);border-radius:18px;padding:20px;box-shadow:var(--shadow);max-height:86dvh;overflow:auto}
+.modal-card h3{font-size:16.5px;font-weight:800;margin-bottom:8px}
+.modal-card p{font-size:13.5px;color:var(--muted);margin-bottom:14px}
+.modal-acts{display:flex;gap:9px;margin-top:16px}
+.modal-acts .btn{flex:1}
+#toast{position:fixed;left:50%;bottom:120px;transform:translateX(-50%);z-index:70;background:var(--ink);color:var(--bg);
+  padding:10px 18px;border-radius:999px;font-size:13px;font-weight:700;box-shadow:var(--shadow)}
+
+/* ---- result ---- */
+.gauge-wrap{display:flex;flex-direction:column;align-items:center;padding:24px 18px 18px}
+.gauge{position:relative;width:170px;height:170px}
+.gauge svg{width:100%;height:100%;transform:rotate(-90deg)}
+.gauge .track{fill:none;stroke:var(--surface2);stroke-width:11}
+.gauge .val{fill:none;stroke:var(--primary);stroke-width:11;stroke-linecap:round;transition:stroke-dashoffset .9s cubic-bezier(.2,.7,.2,1)}
+.gauge.fail .val{stroke:var(--wrong)}
+.gauge .mid{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.gauge .mid b{font-size:42px;font-weight:800;letter-spacing:-.03em;line-height:1}
+.gauge .mid span{font-size:12px;color:var(--muted);font-weight:600;margin-top:4px}
+.passline{margin-top:10px}
+.rsum{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:16px}
+.rsum .stat{text-align:center;padding:11px 6px}
+
+/* ---- bank / list ---- */
+.search{display:flex;align-items:center;gap:9px;padding:11px 14px;border-radius:12px;background:var(--surface);
+  border:1px solid var(--line);margin-bottom:10px}
+.search input{border:0;background:none;outline:none;flex:1;font-size:14px}
+.search .icn{color:var(--muted)}
+.qcard{margin-bottom:12px;overflow:hidden}
+.qcard .pad{padding:16px}
+.optrow{display:flex;align-items:flex-start;gap:10px;padding:10px 12px;border-radius:11px;font-size:13.5px;font-weight:600}
+.optrow .mark{flex:none;width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:11.5px;font-weight:800;
+  border:1.5px solid var(--line);color:var(--muted)}
+.optrow.good{background:var(--primary-soft);color:var(--primary)}
+.optrow.good .mark{background:var(--primary);border-color:var(--primary);color:var(--primary-ink)}
+.qtools{display:flex;gap:6px;margin-left:auto}
+.mini{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;color:var(--muted);border:1px solid var(--line);background:var(--surface)}
+.mini:hover{color:var(--ink)}
+.mini.on{color:var(--star)}
+.mini.on svg{fill:var(--star);stroke:var(--star)}
+.mini .icn{width:15.5px;height:15.5px}
+.empty{text-align:center;padding:44px 20px;color:var(--muted)}
+.empty .icn{width:40px;height:40px;margin:0 auto 10px;opacity:.5}
+.empty b{display:block;font-size:15px;color:var(--ink);margin-bottom:4px}
+.empty p{font-size:13px}
+
+/* ---- wrong / stats ---- */
+.wrongrow{display:flex;align-items:center;gap:11px;padding:13px 15px;border-radius:13px;background:var(--surface);
+  border:1px solid var(--line);margin-bottom:9px}
+.wrongrow .n{flex:none;width:34px;height:34px;border-radius:10px;background:var(--wrong-soft);color:var(--wrong);
+  display:grid;place-items:center;font-weight:800;font-size:13px}
+.wrongrow .t{min-width:0;flex:1}
+.wrongrow .t b{display:block;font-size:13.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.wrongrow .t span{font-size:11.5px;color:var(--muted);font-weight:600}
+.wrongrow .cnt{flex:none;font-size:11px;font-weight:800;color:var(--wrong);background:var(--wrong-soft);border-radius:999px;padding:3px 9px}
+.wrongrow .cnt.hot{background:var(--star);color:#fff}
+.trend{display:flex;align-items:flex-end;gap:7px;height:120px;padding:14px 16px 10px}
+.trend .bar{flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:5px;height:100%}
+.trend .bar i{display:block;width:100%;max-width:30px;border-radius:6px 6px 3px 3px;background:var(--primary-soft);
+  border:1px solid color-mix(in srgb,var(--primary) 30%,var(--line));transition:height .6s}
+.trend .bar i.pri{background:var(--primary);border-color:var(--primary)}
+.trend .bar span{font-size:9.5px;font-weight:700;color:var(--muted)}
+.hist{padding:4px 0}
+.hist .row{display:flex;align-items:center;gap:11px;padding:11px 15px;border-bottom:1px solid var(--line);font-size:13px}
+.hist .row:last-child{border-bottom:0}
+.hist .row b{font-weight:800}
+.hist .row .sc{margin-left:auto;font-weight:800;font-size:15px}
+.hist .row .sc.fail{color:var(--wrong)}
+.hist .row .sc.pass{color:var(--primary)}
+.field{margin-bottom:12px}
+.field label{display:block;font-size:12px;font-weight:700;color:var(--muted);margin-bottom:5px}
+.field input[type=text],.field textarea,.field select{width:100%;padding:10px 12px;border-radius:10px;border:1px solid var(--line);
+  background:var(--surface);font-size:13.5px;outline:none;resize:vertical}
+.field input:focus,.field textarea:focus{border-color:var(--primary)}
+.anspick{display:flex;gap:7px;flex-wrap:wrap}
+.anspick .chip{cursor:pointer}
+@media (min-width:640px){
+  .omrgrid.g40{grid-template-columns:repeat(10,1fr)}
+  .qgrid{grid-template-columns:repeat(4,1fr)}
+  .statrow{grid-template-columns:repeat(4,1fr)}
+}
+</style>
+</head>
+<body>
+<div id="wrap">
+  <header id="top">
+    <div class="brand"><span class="logo">변</span><div><h1>변액보험 판매관리사</h1><p>실전모의고사 1~5회 · 200문항</p></div></div>
+    <button class="iconbtn" id="darkBtn" data-act="dark" aria-label="다크 모드 전환"></button>
+  </header>
+  <main id="screen"></main>
+  <nav id="tabbar"><div class="in">
+    <button class="tab on" data-act="tab" data-tab="home"><span class="icn"><svg viewBox="0 0 24 24"><path d="M4 11.5 12 4.5l8 7V20a1 1 0 0 1-1 1h-4.5v-6h-5v6H5a1 1 0 0 1-1-1z"/></svg></span>홈</button>
+    <button class="tab" data-act="tab" data-tab="exam"><span class="icn"><svg viewBox="0 0 24 24"><rect x="4" y="3.5" width="16" height="17" rx="2.5"/><path d="M8.5 8.5h7M8.5 12.5h7M8.5 16.5h4"/></svg></span>모의고사</button>
+    <button class="tab" data-act="tab" data-tab="bank"><span class="icn"><svg viewBox="0 0 24 24"><path d="M5 4.5A1.5 1.5 0 0 1 6.5 3H19v18H6.5A1.5 1.5 0 0 1 5 19.5zM5 16.5h14"/></svg></span>문제은행</button>
+    <button class="tab" data-act="tab" data-tab="wrong"><span class="dot" style="display:none"></span><span class="icn"><svg viewBox="0 0 24 24"><path d="M20 11.5A8 8 0 1 0 17.2 17.4"/><path d="M20.5 5.5v6h-6"/></svg></span>오답노트</button>
+    <button class="tab" data-act="tab" data-tab="stats"><span class="icn"><svg viewBox="0 0 24 24"><path d="M5 20v-9M12 20V4M19 20v-6"/></svg></span>통계</button>
+  </div></nav>
+</div>
+<div id="sheet" class="hidden"></div>
+<div id="modal" class="hidden"><div class="modal-bg" data-act="modal-close"></div><div class="modal-card" id="modalCard"></div></div>
+<div id="toast" class="hidden"></div>
+<script>
+"use strict";
+/* 문제 데이터: 첨부 이미지(2026 변액보험 판매관리사 실전모의고사 1회) 판독 기반.
+   type: "ox"=O/X형, "mc"=객관식 / answer: ox는 "O"|"X", mc는 0~3 (①~④)
+   rv:1 = 이미지 판독이 불확실해 원본 대조를 권장하는 문항 */
+window.QUESTIONS=[
+{"id":1,"type":"ox","q":"생명보험회사의 변액보험과 금융투자회사의 실적배당 상품의 공통점은 적립금액에 대한 최저보증옵션을 선택할 수 있다는 점이다.","answer":"X","rv":1,
+"expl":"금융투자회사의 공동투자자가 판매하는 실적배당상품에는 최저보증옵션이 없다. 따라서 '최저보증옵션 선택 가능'을 두 상품의 공통점으로 보는 것은 틀린 설명이다."},
+{"id":2,"type":"ox","q":"보험계약에 관하여 분쟁이 있는 경우 분쟁당사자 또는 기타 이해관계인은 금융감독원장에게 조정을 신청할 수 없다.","answer":"X","rv":1,
+"expl":"분쟁당사자 또는 이해관계인은 금융감독원장에게 분쟁조정을 신청할 수 있다. '신청할 수 없다'는 부분이 틀린 설명이다."},
+{"id":3,"type":"ox","q":"변액보험 특별계정(펀드)의 평가는 매일 시가에 의해 실시한다.","answer":"O","rv":1,
+"expl":"변액보험 특별계정(펀드)은 매일 기준가격을 산출·평가한다. 맞는 설명이다."},
+{"id":4,"type":"ox","q":"통상 만기가 1년 미만인 금융상품이 거래되는 단기금융시장은 그 규모가 매우 크지만 실제 참가자들은 일반개인이 아닌 금융기관이나 대기업 등을 위주로 구성되어 있다.","answer":"O","rv":1,
+"expl":"단기금융시장(1년 미만)은 규모가 매우 크고 참가자도 일반개인보다 금융기관·대기업이 중심이다. 맞는 설명이다."},
+{"id":5,"type":"mc","q":"다음 중 금리에 대해 맞게 설명한 것은?",
+"opts":["물가변동 고려 여부에 따라 표면금리와 실질금리로 구분한다.","명목금리는 실질금리에서 소비자물가지수 상승률을 차감하여 계산한다.","금리의 변동은 자금의 수요와 공급규모에 영향을 미친다.","금리 간 수준비교는 통상 표면금리를 기준으로 이루어진다."],
+"answer":2,
+"expl":"물가변동 고려 여부에 따라 명목금리와 실질금리로 구분되고, 실질금리는 명목금리에서 소비자물가지수 상승률을 차감해 계산한다. 금리 간 수준비교는 통상 실효금리를 기준으로 한다. 따라서 ③이 맞다."},
+{"id":6,"type":"mc","q":"다음 중 저축성 변액보험의 수수료 안내표 제공 시 필수 포함 내용에 해당하지 않는 것은?",
+"opts":["초기중도인출료","과거 3년간 자산운용수수료","위험보험료","특별계정 운용보수"],
+"answer":0,"rv":1,
+"expl":"판독된 해설: 2021년 3월 이전의 자산운용수수료는 수수료 안내표의 내용이 아니다. (정답표 기준 ① — 원본 대조 권장)"},
+{"id":7,"type":"mc","q":"다음 표의 변액연금보험 계약에서 연금개시 시점의 연금지급 재원으로 맞는 것은?",
+"tb":["35세 가입 · 20년 납입 · 60세 연금개시","연금개시 시점에서 이미 납입한 보험료 최저보증","주계약 납입보험료: 매월 20만원","60세 시점의 계약자적립금: 4,000만원"],
+"opts":["2,400만원","4,000만원","4,800만원","6,000만원"],
+"answer":2,"rv":1,
+"expl":"연금개시 시점의 최저보증 재원 = 납입보험료 총액(매월 20만원 × 240회 = 4,800만원)과 계약자적립금(4,000만원) 중 큰 금액 = 4,800만원."},
+{"id":8,"type":"mc","q":"다음 중 변액보험과 투자신탁(수익증권)에 대해 틀리게 설명한 것은?",
+"opts":["변액보험의 가입목적은 인플레이션 헤지를 통한 보장금액의 실질가치 보존에 있다.","투자신탁(수익증권)은 간접투자를 통해 고수익을 추구하는 상품이다.","투자신탁(수익증권)은 10년 이상 유지할 경우 이자소득 비과세 혜택이 있다.","변액보험과 투자신탁(수익증권) 모두 실적배당 상품이다."],
+"answer":2,
+"expl":"10년 이상 유지 시 이자소득 비과세 혜택이 적용되는 것은 변액보험이지 투자신탁(수익증권)이 아니다. 따라서 ③이 틀린 설명이다."},
+{"id":9,"type":"mc","q":"다음 표에서 설명하는 용어로 맞는 것은?",
+"tb":["생명보험협회와 손해보험협회가 공동으로 운영하며, 휴면 보험금을 찾아주는 서비스 사이트"],
+"opts":["보험다모아","내보험다보여","금융상품 한눈에","종합신용정보"],
+"answer":0,"rv":1,
+"expl":"생명보험협회와 손해보험협회가 공동으로 운영하고 휴면보험금·미지급보험금을 찾아주는 사이트는 '보험다모아'이다."},
+{"id":10,"type":"mc","q":"다음 표의 ( ) 안에 들어갈 용어를 순서대로 맞게 나열한 것은?",
+"tb":["변액보험금은 (가)와 해당 보험계약의 산출이율로 계산한 기본보험약정의 (나)와의 차액 중 (다)를 가지고 계산한다."],
+"opts":["(가) 실제 계약자적립금 (나) 예정적립금 (다) 초과적립금","(가) 초과적립금 (나) 기본보험금 (다) 실제 계약자적립금","(가) 예정적립금 (나) 실제 계약자적립금 (다) 초과적립금","(가) 실제 계약자적립금 (나) 기본적립금 (다) 초과적립금"],
+"answer":0,
+"expl":"변액보험금은 실제 계약자적립금((가))과 예정적립금((나))의 차액 중 초과적립금((다))으로 계산한다."},
+{"id":11,"type":"mc","q":"다음 표에서 설명하는 변액보험 특별계정(펀드)의 자산운용옵션은 무엇인가?",
+"tb":["투자성과에 따라 변동된 펀드의 재원액 비중을 고객이 설정한 비율로 일정 주기마다 조정하는 자산운용옵션"],
+"opts":["펀드변경 기능","펀드밸런스옵션형","펀드자동재배분 기능","보험료평균분할투자 기능"],
+"answer":2,"rv":1,
+"expl":"투자성과에 따라 변동된 펀드 재원액 비중을 고객이 설정한 비율로 일정 주기마다 자동으로 조정하는 기능은 '펀드 자동재배분 기능'이다."},
+{"id":12,"type":"mc","q":"다음 중 변액유니버셜보험의 특징에 대해 틀리게 설명한 것은?",
+"opts":["계약자는 해약환급금의 범위 내에서 적립금을 중도인출할 수 있다.","특별계정펀드의 운용실적에 따라 해약환급금이 변동된다.","보험료 납입을 중지할 경우 위험보험료, 사업비 등을 계약자적립금에서 공제한다.","수시 입출금이 가능함에 따라 계약유지가 제한적이다."],
+"answer":1,"rv":1,
+"expl":"변액유니버셜보험은 해약환급금 범위 내에서 적립금 중도인출이 가능하고, 보험료 납입 중지 시 위험보험료·사업비 등을 계약자적립금에서 공제한다. (정답표 기준 ② — 원본 대조 권장)"},
+{"id":13,"type":"mc","q":"다음 표의 ( ) 안에 들어갈 내용으로 맞는 것은?",
+"tb":["주식을 매수한 사람은 발행회사가 지정한 기준일에 ( )을/를 해야 주주로서의 권리를 갖게 된다."],
+"opts":["거래등록","증서인","명의개서","주식위탁"],
+"answer":2,
+"expl":"주주명부 기재사항을 변경하는 '명의개서'를 해야 주주로서의 권리를 갖는다."},
+{"id":14,"type":"mc","q":"다음 중 변액보험의 해약환급금 예시를 위해 가정할 수 있는 투자수익률이 아닌 것은?",
+"opts":["−1%","평균공시이율","평균공시이율 × 1.5","평균공시이율 × 2"],
+"answer":3,"rv":1,
+"expl":"판독된 해설: 평균공시이율 × 2배는 해약환급금 예시의 가정수익률로 사용할 수 없다. (정답표와 불일치 — 원본 대조 권장)"},
+{"id":15,"type":"mc","q":"다음 중 변액보험의 보험계약대출에 대해 틀리게 설명한 것은?",
+"opts":["보험계약대출 이자는 보험계약대출 수수료를 차감한 후 특별계정펀드에 반영된다.","특별계정자산으로 보험계약대출을 시행할 경우 일반계정에서 특별계정펀드로 대출금액을 이체한 후 지급한다.","보험계약대출 원리금은 보험기간 동안 언제든지 상환할 수 있다.","대출상환금액은 '상환일 + 제2영업일'에 특별계정(펀드)으로 투입된다."],
+"answer":2,"rv":1,
+"expl":"보험계약대출 실행·상환 시 특별계정(펀드) 반에는 영업일 기준이 적용된다. (해설 원문 판독 불완전 — 원본 대조 권장)"},
+{"id":16,"type":"mc","q":"다음의 경우 A은행 파산 시 예금자보호법에 의해 예금자에게 지급되는 보호금으로 맞는 것은?",
+"tb":["보통예금: 3,000만원(원금+이자)","확정금액연금형 퇴직연금 적립금: 3,000만원(원금+이자)"],
+"opts":["3,000만원","5,000만원","6,000만원","7,000만원"],
+"answer":0,"rv":1,
+"expl":"판독된 해설: 3,000만원(①). (퇴직연금 적립금의 예금자보호 적용 여부에 따라 6,000만원(③)일 수도 있어 원본 대조 권장)"},
+{"id":17,"type":"mc","q":"다음 변액보험 특별계정(펀드) 운용현황표에 대해 맞게 설명한 것은?",
+"tb":["기준가격 1,520.00 · 전일대비 +2.00 · 연환산수익률 6.00% · 순자산가치 500억원"],
+"opts":["전일의 기준가격은 1,522.00원이다.","펀드 최초개설일보다 기준가격이 상승하였다.","상기자료만으로 누적수익률은 확인할 수 없다.","최근 1년간의 수익률은 6.00%이다."],
+"answer":2,
+"expl":"전일 기준가격 = 1,520.00 − 2.00 = 1,518.00 (① 틀림). 연환산수익률 6.00%만으로는 누적수익률을 알 수 없고(③ 맞음), 연환산수익률을 최근 1년 수익률이라 단정할 수도 없다(④ 틀림)."},
+{"id":18,"type":"mc","q":"다음 표에서 금융소득에 대해 틀리게 설명한 것은?",
+"tb":["금융소득은 (가) 이자소득, 배당소득, 임대소득을 총칭하는 개념이며,","(나) 비과세 및 분리과세 금융소득을 제외한 연간 금융소득 중 (다) 2천만원을 초과하는 금액에 대해서는 금융소득 전체를 종합과세하며 (라) 개인별로 과세하는 것을 원칙으로 한다."],
+"opts":["(가)","(나)","(다)","(라)"],
+"answer":0,"rv":1,
+"expl":"(가)가 틀렸다: 금융소득은 이자소득과 배당소득을 총칭하는 개념이며, 임대소득은 금융소득이 아니다."},
+{"id":19,"type":"mc","q":"다음 중 변액보험에서 사업비 외 추가로 부과되는 비용이 아닌 것은?",
+"opts":["특별계정 운영보수","특별계정 수수료","최저사망보험금(GMDB) 보증비용","보험계약대출 보증비용"],
+"answer":3,
+"expl":"보험계약대출에는 별도의 보증비용이 없다. 특별계정 운영보수·수수료와 최저사망보험금(GMDB) 보증비용은 사업비 외에 부과될 수 있다."},
+{"id":20,"type":"mc","q":"다음 중 우리나라의 변액보험과 관련한 법적 규제에 대해 맞게 설명한 것은?",
+"opts":["손해보험회사는 변액보험을 판매할 수 없다.","변액보험의 정의는 「보험업법」에 명시되어 있다.","보험회사의 임직원은 변액보험을 모집할 수 없다.","변액보험의 펀드는 「보험업법」의 규제를 받아 「자본시장법」상 집합투자기구 외의 운용수수료 예외가 인정된다."],
+"answer":0,"rv":1,
+"expl":"변액보험은 생명보험회사만 판매할 수 있다. 따라서 '손해보험회사는 변액보험을 판매할 수 없다'가 맞다."},
+{"id":21,"type":"mc","q":"다음 표의 ( ) 안에 공통으로 들어갈 기간으로 맞는 것은?",
+"tb":["금융감독원은 금융상품의 만기를 기준으로 보통 단기 ( ) 미만의 단기금융상품과 만기 ( ) 이상의 장기금융상품으로 구분한다."],
+"opts":["1년","3년","1개월","3개월"],
+"answer":0,
+"expl":"금융감독원은 만기 1년 미만을 단기금융상품, 1년 이상을 장기금융상품으로 구분한다."},
+{"id":22,"type":"mc","q":"다음 중 변액보험 보험료의 특별계정(펀드) 투입일에 대하여 맞게 설명한 것은?",
+"opts":["제1회 보험료: 청약철회기간 이후에 승낙한 경우 '승낙일'","제2회 이후 보험료: 계약해당일 이후에 납입한 경우 '납입일 + 제2영업일'","추가납입보험료: '납입일 + 제1영업일'","선납보험료: '매월 계약해당일'"],
+"answer":1,"rv":1,
+"expl":"판독된 투입일 규칙: 제1회 보험료는 청약철회기간 이후 승낙한 경우 승낙일, 제2회 이후 보험료는 계약해당일 이후 납입 시 '납입일 + 제2영업일', 추가납입보험료는 '납입일 + 제2영업일'이다."},
+{"id":23,"type":"mc","q":"다음 중 변액보험의 최저보증옵션에 대해 맞게 설명한 것은?",
+"opts":["변액유니버셜보험(보장형)의 최저사망보험금 보증은 보험계약자가 설정 여부를 선택할 수 있다.","일정 수준 이상의 사망보험금과 연금재원을 보증하기 위한 수단이다.","변액유니버셜보험은 이미 납입한 보험료를 해약환급금으로 최저보증한다.","변액연금보험은 해약환급금을 최저보증하기 위하여 별도의 보증비용을 공제한다."],
+"answer":2,
+"expl":"변액유니버셜보험(보장형)의 최저사망보험금 보증은 설정 여부를 선택할 수 없고(① 틀림), 이미 납입한 보험료를 최저보증한다(③ 맞음)."},
+{"id":24,"type":"mc","q":"다음 중 단기사채의 발행조건에 대해 맞게 설명한 것은?",
+"opts":["발행금액 최소 1억원 이상, 만기 6개월 이내","발행금액 최소 3억원 이상, 만기 6개월 이내","발행금액 최소 1억원 이상, 만기 1년 이내","발행금액 최소 3억원 이상, 만기 1년 이내"],
+"answer":2,
+"expl":"단기사채의 발행조건은 발행금액 최소 1억원 이상, 만기 1년 이내이다."},
+{"id":25,"type":"mc","q":"다음 중 종합소득세의 세제혜택 대상에 대한 설명으로 틀린 것은?",
+"opts":["보장성 보험료의 세액공제는 근로소득이 있는 경우에만 가능하다.","연금계좌는 근로소득이 없더라도 세액공제가 가능하다.","비과세종합저축의 경우 65세 이상자 또는 장애인 등을 대상으로 한다.","저축성보험의 비과세는 종합소득이 있는 경우에만 가능하다."],
+"answer":3,"rv":1,
+"expl":"저축성보험의 비과세는 모든 거주자에게 적용된다 — 종합소득세를 납부하지 않는 사람도 비과세 혜택을 볼 수 있다. 따라서 ④가 틀린 설명이다."},
+{"id":26,"type":"mc","q":"다음 중 보험정보 공시가 확대되는 배경에 대해 틀리게 설명한 것은?",
+"opts":["보험상품가격의 자유화","방카슈랑스 등 보험영업채널 다변화","공급자 중심의 금융정책 이동","소비자보호 강화"],
+"answer":2,"rv":1,
+"expl":"보험정보 공시 확대 배경은 '소비자 중심의 금융정책 이동'이다. '공급자 중심의 이동'은 틀린 설명이다."},
+{"id":27,"type":"mc","q":"다음 중 변액보험 특별계정(펀드)의 채권형펀드 자산으로 편입될 수 없는 것은?",
+"opts":["전환사채","양도성예금증서","예금","상장주식"],
+"answer":3,
+"expl":"채권형펀드에는 상장주식(예: 삼성주식)을 편입할 수 없다. 전환사채·양도성예금증서·예금 등은 편입 가능하다."},
+{"id":28,"type":"mc","q":"다음 중 변액보험 특별계정(펀드)의 계약자 보유좌수가 변동하는 경우가 아닌 것은?",
+"opts":["보험계약자가 보험료를 추가로 납입하였다.","보험계약자가 보험계약대출 원리금을 상환하였다.","자산운용 실적이 호전되었다.","월대체보험료가 차감되었다."],
+"answer":2,"rv":1,
+"expl":"자산운용 실적이 호전되어도 좌수는 변동하지 않는다(③). 좌수는 추가납입·대출원리금 상환 등 돈이 투입될 때 증가하고, 중도인출·월보험료 차감·대출 실행 등으로 빠져나갈 때 감소한다."},
+{"id":29,"type":"mc","q":"다음 표에서 설명하고 있는 보험의 기본적인 원리는 무엇인가?",
+"tb":["동전을 10번 던질 경우 앞면은 10번 나오거나 한 번도 나오지 않을 수 있지만, 동전을 10,000번 던진다면 앞면이 나오는 비율이 절반에 가까워질 것이다."],
+"opts":["수지상등의 원칙","대수의 법칙","소득재분배의 원칙","포괄성의 원칙"],
+"answer":1,
+"expl":"시행 횟수가 많아질수록 실제 결과가 기대확률에 수렴한다는 '대수의 법칙'에 대한 설명이다."},
+{"id":30,"type":"mc","q":"다음 중 변액연금보험의 해약환급금에 대해 맞게 설명한 것은?",
+"opts":["계약 해지 시, 기준가격은 해약신청일 당일의 기준가격을 적용한다.","보험료 납입횟수, 투자수익률과는 무관하다.","계약 초기에는 이미 납입한 보험료보다 적은 금액이 될 수 있다.","보험가입금액에서 해약공제금액을 차감하여 해약환급금으로 지급한다."],
+"answer":2,
+"expl":"해약 시 기준가격은 해지신청일 + 제2영업일 기준(① 틀림)이고, 해약환급금은 계약자적립금에서 해약공제금액을 차감해 지급한다(④ 틀림). 계약 초기에는 사업비 공제로 납입보험료보다 적을 수 있다(③ 맞음)."},
+{"id":31,"type":"mc","q":"다음 중 변액보험의 보험료에 대해 맞게 설명한 것은?",
+"opts":["변액종신보험은 월납과 연납의 납입방법만 선택할 수 있다.","변액유니버셜보험에서는 납입보험료 중 기타비용을 제외한 금액이 특별계정에 투입된다.","변액유니버셜보험의 의무납입기간에는 보험료를 추가납입할 수 없다.","변액연금보험은 이미 납입한 보험료의 3배 이내에서 보험료 추가납입이 가능하다."],
+"answer":1,"rv":1,
+"expl":"변액유니버셜보험은 납입보험료 중 기타비용을 제외한 금액이 특별계정에 투입된다(② 맞음). 의무납입기간에도 추가납입이 가능하고(③ 틀림), 변액연금보험의 추가납입 한도는 기본보험료의 2배 이내이다(④ 틀림)."},
+{"id":32,"type":"mc","q":"다음 표에서 설명하는 단체는 무엇인가?",
+"tb":["핵심적인 반핵 운동과 자연보호 운동 등을 통하여 지구의 환경을 보존하고 평화를 증진하기 위해 1971년 설립된 국제 환경보호 단체"],
+"opts":["그린피스","적십자","WTO","FTA"],
+"answer":0,"rv":1,
+"expl":"1971년 설립된 국제 환경보호 단체는 그린피스이다."},
+{"id":33,"type":"mc","q":"다음 중 비과세 및 분리과세 금융상품에 대해 틀리게 설명한 것은?",
+"opts":["비과세 적용: 일정 요건을 충족한 저축성보험의 보험차익","분리과세 적용: 2012년 12월 31일까지 발행된 10년 이상의 장기채권의 이자를 분리과세 신청한 경우","비과세 적용: 2014년 12월 31일까지 가입한 세금우대종합저축에서 발생하는 이자, 배당","비과세 적용: 65세 이상인 거주자가 1인당 저축원금 5,000만원 이하인 비과세종합저축에 기한 내에 가입한 경우 그 저축의 이자, 배당"],
+"answer":2,
+"expl":"세금우대종합저축의 이자·배당은 비과세가 아니라 (기존 이자·배당소득세 14%에서 5%를 감면한) 9%의 세금우대세율로 과세된다. 따라서 ③이 틀린 설명이다."},
+{"id":34,"type":"mc","q":"다음 중 보험회사의 변액보험 특별계정(펀드) 폐지 사유가 아닌 것은?",
+"opts":["당해 각 특별계정 펀드의 자산이 급격히 감소하거나, 자산가치의 변화로 인해 효율적인 자산운용이 곤란해진 경우","설정한 후 1년이 되는 날에 투자신탁의 설정액이 50억원 미만인 경우","설정한 후 6개월이 지난 후 1개월간 계속하여 투자신탁의 설정액이 50억원 미만인 경우","당해 각 특별계정 펀드의 운용대상이 소멸할 경우"],
+"answer":3,
+"expl":"특별계정 폐지 사유에는 자산의 급격한 감소로 효율적 운용이 곤란한 경우, 설정 후 1년이 되는 날 또는 6개월 경과 후 1개월간 계속 투자신탁 설정액이 50억원 미만인 경우 등이 있다. (판독된 정답: ④)"},
+{"id":35,"type":"mc","q":"다음 표의 ( )에 들어갈 용어를 순서대로 맞게 나열한 것은?",
+"tb":["자본금 100억원인 회사가 기존 주식 10주를 1주로 줄이는 감자를 실시하면 주식의 액면금액에는 변동이 없이 자본금이 (가)으로 줄어들고, 나머지 (나)은 누적손실과 상쇄하는 절차가 된다."],
+"opts":["(가) 11억원, (나) 89억원","(가) 1억원, (나) 99억원","(가) 10억원, (나) 90억원","(가) 50억원, (나) 50억원"],
+"answer":2,
+"expl":"감자로 자본금이 10억원((가))으로 줄어들고, 나머지 90억원((나))은 누적손실과 상쇄하는 절차가 된다."},
+{"id":36,"type":"mc","q":"다음 중 신주인수권부사채에 대해 틀리게 설명한 것은?",
+"opts":["사채납입자가 신주인수권을 행사할 때는 약정된 매입대금을 납입하고 신주를 인수하게 된다.","사채와 신주인수권이 하나로 결합된 증권이다.","신주인수권만 따로 거래하는 것은 불가능하다.","주식을 취득하더라도 채권의 효력은 만기까지 존속한다."],
+"answer":2,"rv":1,
+"expl":"신주인수권부사채(BW)는 사채와 신주인수권이 결합된 증권으로, 신주인수권은 분리하여 별도로 거래할 수 있다. 따라서 ③이 틀린 설명이다."},
+{"id":37,"type":"mc","q":"다음 중 보험 관련 세제에 대해 틀리게 설명한 것은?",
+"opts":["피보험자의 사망으로 지급받는 보험금은 상속세 과세대상이다.","상속받은 보험금은 금융재산 상속공제 대상이다.","미성년자인 보험계약자가 수령하는 보험금은 증여세 과세대상이다.","납입기간이 4년이고, 계약기간이 8년인 월적립식 저축성보험의 보험금은 비과세대상이다."],
+"answer":3,
+"expl":"저축성보험의 보험차익 비과세 요건은 납입기간 5년 이상, 계약기간 10년 이상 등이다. 납입 4년·계약 8년 계약은 비과세 대상이 아니므로 ④가 틀린 설명이다."},
+{"id":38,"type":"mc","q":"다음 중 변액보험을 특별계정으로 운용하는 이유에 대해 틀리게 설명한 것은?",
+"opts":["변액보험은 투자성격의 상품위험을 계약자가 부담하기 때문이다.","변액보험은 자산운용의 규모가 방대하기 때문이다.","변액보험의 자산은 계약별 적립금의 산출이 공정해야 하기 때문이다.","변액보험은 실적배당형 상품이어서 일반보험과는 자산운용의 목적이 상이하기 때문이다."],
+"answer":1,
+"expl":"특별계정 운용은 자산운용 규모와는 무관하다(② 틀림). 계약별 적립금 산출의 공정성과 실적배당형 상품 특성이 특별계정 운용의 이유이다."},
+{"id":39,"type":"mc","q":"다음 중 약관의 설명의무에 대해 틀리게 설명한 것은?",
+"opts":["보험회사는 보험계약자에게 약관의 중요한 내용을 설명해야 한다.","청약철회에 관한 사항은 설명해야 할 중요한 내용에 해당한다.","보험계약자에게 설명해야 할 약관의 중요한 내용은 보험종류에 따라 다르다.","약관의 설명의무를 위반한 경우 보험계약자는 청약일부터 6개월 이내에 그 계약을 취소할 수 있다."],
+"answer":3,
+"expl":"약관 설명의무 위반 시 계약자는 보험계약 성립일로부터 3개월 이내에 계약을 취소할 수 있다. '청약일부터 6개월'은 틀린 설명이다."},
+{"id":40,"type":"mc","q":"다음 중 변액종신보험과 일반종신보험의 공통점을 모두 고른 것은?",
+"tb":["(가) 다양한 특약선택","(나) 일반계정으로 운용","(다) 투자수익률로 운용","(라) 세제혜택"],
+"opts":["(가), (나)","(나), (다)","(다), (라)","(가), (라)"],
+"answer":3,
+"expl":"공통점은 다양한 특약 선택((가))과 세제혜택((라))이다. 운용 방식(일반계정 vs 특별계정)과 수익 반영 방식(공시이율 vs 투자수익률)은 차이점이다."}
+];
+/* 제2회 실전모의고사 (id 1001~1040, 표시 번호 = id-1000) */
+window.QUESTIONS2=[
+{"id":1001,"s":2,"type":"ox","q":"변액종신보험의 특별계정 투입보험료는 순보험료와 납입 중 계약관리비용을 합한 금액이다.","answer":"X","rv":1,
+"expl":"특별계정 투입보험료는 순보험료와 납입 후 계약유지비용으로 정리된다(해설). 문항 용어가 이와 다르게 판독되어 X 처리했으니 원본 대조를 권장합니다."},
+{"id":1002,"s":2,"type":"ox","q":"금융감독원은 물가동향, 국내외 경제상황, 금융시장 동향 등을 종합적으로 고려하여 연 8회 기준금리를 결정한다.","answer":"X",
+"expl":"기준금리는 금융감독원이 아니라 한국은행 금융통합위원회가 연 8회 결정한다. '금융감독원'이 틀린 부분이다."},
+{"id":1003,"s":2,"type":"ox","q":"일시납조건과 기납입보험료를 피보험자로 하는 일반보증보험에 가입한 경우 세제혜택을 받을 수 있다.","answer":"X","rv":1,
+"expl":"보장성보험료 세액공제는 근로소득자에게만 적용되며 일용근로자가 일괄 제외되는 것은 아니다(해설 판독 기반). 문항 문면의 판독이 불완전하니 원본 대조를 권장합니다."},
+{"id":1004,"s":2,"type":"ox","q":"변액보험 특별계정(펀드)의 자산평가와 결산은 매년 1회 실시한다.","answer":"X",
+"expl":"특별계정의 자산평가와 정산은 매년 1회가 아니라 매일 실시한다(해설 교정: 매년→매일/매월)."},
+{"id":1005,"s":2,"type":"mc","q":"다음 중 ( ) 안에 들어갈 내용으로 맞는 것은?",
+"tb":["변액종신보험의 특별계정 최초투입일은 보증기간 납입의 계약특약기간이 끝나는 날의 다음날부터 ( )이 될 때까지의 기간을 말하며,","최저사망보증기간이 끝나는 경우 계약은 효력이 없어진다."],
+"opts":["펀드중도가치가 0원","예정해지환급금이 0원","납입기간 종료일","최종 보험료 납입일의 익월 마지막 날"],
+"answer":1,"rv":1,
+"expl":"해설은 '(예정)해지환급금이 0원'을 정답으로 안내한다(②). 정답표 판독은 ①이라 상이하니 원본 대조를 권장합니다."},
+{"id":1006,"s":2,"type":"mc","q":"다음 표에서 설명하는 용어는 무엇인가?",
+"tb":["보험계약 집단에 내재된 모든 미래 현금흐름의 현재가치 추정치"],
+"opts":["최선추정부채","위험조정","보험계약마진","이행현금흐름"],
+"answer":0,"rv":1,
+"expl":"미래 현금흐름의 현재가치 추정치는 최선추정부채의 정의이다(해설: '최선추정부채에 대한 설명이다'). 정답표 판독과 상이해 원본 대조를 권장합니다."},
+{"id":1007,"s":2,"type":"mc","q":"다음 중 변액보험 특별계정(펀드)에 대해 틀리게 설명한 것은?",
+"opts":["주식형 펀드는 주식시장 하락 시 원금손실이 발생할 수 있다.","채권형 펀드는 10% 한도 내에서 주식에 투자할 수 있다.","혼합형 펀드는 주식과 채권에 모두 투자할 수 있다.","단기자금형(MMF) 펀드는 원금손실 가능성이 거의 없다."],
+"answer":1,
+"expl":"채권형 펀드는 주식에 투자할 수 없다(해설) — '10% 한도 내 주식 투자 가능'은 틀린 설명이다."},
+{"id":1008,"s":2,"type":"mc","q":"다음 표의 내용 중 법인세, 소득세, 상속세 및 증여세의 세율 구간으로 올바른 것은?",
+"tb":["(가) 법인세 : 10% ~ 30%","(나) 소득세 : 최저 6% ~ 최고 45%","(다) 상속세 및 증여세 : 10% ~ 50%"],
+"opts":["(가)","(가), (다)","(나), (다)","(가), (나), (다)"],
+"answer":2,"rv":1,
+"expl":"법인세 구간은 9%~24%이므로 (가)는 틀렸고, (나) 소득세 6%~45%와 (다) 상속세·증여세 10%~50%가 올바르다(해설). 정답표 판독은 ①이라 상이하니 원본 대조를 권장합니다."},
+{"id":1009,"s":2,"type":"mc","q":"다음 중 변액종신보험에 대해 맞게 설명한 것은?",
+"opts":["일반종신보험과 동일한 특별계정에서 자산을 운용한다.","보험기간이 5년이므로 연금전환의 방법으로 활용할 수 없다.","변액보험금은 매월 계약해당일에 자산평가하여 1개월간 확정·적용된다.","일반보험과 달리 우량체 할인제도가 없다."],
+"answer":2,"rv":1,
+"expl":"변액종신보험은 일반종신보험과 달리 특별계정에서 자산을 운용하며(① 틀림), 변액보험금은 매월 계약해당일에 평가해 1개월간 확정·적용한다(③ 맞음, 정답표)."},
+{"id":1010,"s":2,"type":"mc","q":"다음 중 변액연금보험에 대해 틀리게 설명한 것은?",
+"opts":["보증비용의 투자성향에 따라 혼합형펀드 등의 자산운용 형태를 선택할 수 있다.","연금개시 이후 적립금을 일반계정에서 운용할 수 있다.","사망보험금은 투자실적에 따라 매일 변동한다.","투자수익률과 순수익률 중 하나를 선택하여 예시해야 한다."],
+"answer":3,
+"expl":"투자수익률과 순수익률을 함께 예시해야 하며 선택하는 것이 아니다(해설) — ④가 틀린 설명이다."},
+{"id":1011,"s":2,"type":"mc","q":"다음 중 생명보험계약에 대해 맞게 설명한 것은?",
+"opts":["보험계약자는 보험회사의 승낙 없이도 보험종목을 변경할 수 있다.","보험계약자는 보험약관이 성립되면 보험계약을 취소할 수 없다.","보험회사는 보험계약자의 약관교부 요구가 없는 경우 약관을 교부할 의무가 없다.","보험계약은 일반적으로 보험계약자가 제1회 보험료를 납입하면 보험회사의 책임이 개시된다."],
+"answer":3,
+"expl":"제1회 보험료 납입으로 보험회사의 책임이 개시되는 것이 일반적이다(④ 맞음). ① 보험종목 변경은 보험회사의 승낙이 필요하고, ③ 약관교부 요구가 없어도 교부 의무가 있다."},
+{"id":1012,"s":2,"type":"mc","q":"다음 중 변액보험의 현금흐름 및 수수료 차감 방식 등에 대해 틀리게 설명한 것은?",
+"opts":["최저보증비용은 매일 또는 매월 차감한다.","특별계정 운용보수는 매일 차감한다.","변액유니버셜보험의 의무납입기간 중에는 보험료를 정기적으로 납입해야 한다.","변액유니버셜보험의 의무납입기간 중에는 선택특약의 보험료를 월 공제액으로 차감한다."],
+"answer":1,"rv":1,
+"expl":"정답표 기준 ②가 틀린 설명이다 — 특별계정 운용보수의 차감 주기는 원본에서 확인이 필요하다(판독 불완전)."},
+{"id":1013,"s":2,"type":"mc","q":"다음 중 변액유니버셜보험에 대해 틀리게 설명한 것은?",
+"opts":["보험계약자는 해약환급금 범위 내에서 적립금의 중도인출이 가능하다.","적립형은 기본보험료를 사업비 등으로 최소보증한다.","의무납입기간 이후 매월 계약해당일에 최저사망보증비용이 차감된다.","수시입출금이 가능하고 다양한 선택옵션을 자유롭게 선택할 수 있다."],
+"answer":1,"rv":1,
+"expl":"정답표 기준 ②가 틀린 설명이다 — 최저보증 방식 관련 설명으로 판독이 불완전하니 원본 대조를 권장합니다."},
+{"id":1014,"s":2,"type":"mc","q":"다음 중 보험회사의 공시에 대해 틀리게 설명한 것은?",
+"opts":["결산공시는 사업연도별 결산일로부터 3개월 이내에 하여야 한다.","결산공시는 인터넷 홈페이지 경영공시실에 3년간 공시하여야 한다.","분기공시는 분기 결산일로부터 1개월 이내에 하여야 한다.","분기공시는 다음 분기 임시결산 공시 전까지 공시하여야 한다."],
+"answer":1,
+"expl":"결산공시는 홈페이지에 3년이 아니라 5년간 공시해야 하므로 ②가 틀렸다. 분기공시는 분기 결산일로부터 1개월 이내, 다음 분기 공시 전까지 공시한다."},
+{"id":1015,"s":2,"type":"mc","q":"다음 중 저축성 변액보험의 수수료 안내표 제공 시 포함 내용에 해당하지 않는 것은?",
+"opts":["보증비용","최근 1년간의 공시이율","위험보험료","특별계정 펀드 운용비용"],
+"answer":1,
+"expl":"'최근 1년간의 공시이율'은 수수료 안내표의 필수 포함 내용이 아니다."},
+{"id":1016,"s":2,"type":"mc","q":"다음 중 변액보험의 펀드변경에 대해 틀리게 설명한 것은?",
+"opts":["가입 시 선택한 펀드에 대해 통상 1년에 12번 이내에서 다른 유형으로 변경할 수 있다.","펀드 변경 시에는 별도의 수수료가 부과될 수 있다.","변액보험 판매 시 펀드변경에 대해 계약자에게 설명해야 한다.","반드시 보험회사에 방문하여 본인 확인 후 펀드변경 신청서를 작성해야 한다."],
+"answer":3,"rv":1,
+"expl":"펀드변경은 보험회사 방문 외에 인터넷·전화·모바일 앱 등으로도 신청할 수 있으므로 '반드시 방문해야 한다'는 ④가 틀린 설명이다(해설). 정답표 판독은 ①이라 상이하니 원본 대조를 권장합니다."},
+{"id":1017,"s":2,"type":"mc","q":"다음 중 상환기간에 따라 분류할 경우 중기에 해당하는 채권은 무엇인가?",
+"opts":["통화안정증권","외국환평형기금채권","국민주택채권","도시철도채권"],
+"answer":1,"rv":1,
+"expl":"통화안정증권은 단기채이고 국민주택채권·도시철도채권은 장기채에 해당한다(해설) — 남는 중기는 외국환평형기금채권(②)이다. 정답표 판독은 ③이라 상이하니 원본 대조를 권장합니다."},
+{"id":1018,"s":2,"type":"mc","q":"다음 중 보험계약의 비교안내 계약기간 기산일 변경사유에 해당하지 않는 것은?",
+"opts":["수취자를 변경한 경우","계약자 명의가 변경된 경우","보장정보를 저축정보로 변경하는 경우","최초 계약한 기본보험료의 1/10을 초과하여 기본보험료를 증액하는 경우"],
+"answer":0,
+"expl":"계약기간 기산일 변경 사유는 계약자 명의 변경, 보장성↔저축성 전환, 기본보험료 1/10 초과 증액 등이다. 수취자(수익자) 변경은 해당하지 않는다."},
+{"id":1019,"s":2,"type":"mc","q":"다음 중 변액보험의 보험계약대출에 대해 맞게 설명한 것은?",
+"opts":["보험계약자가 납입한 보험계약대출이자 전액이 특별계정 재원으로 투입된다.","보험계약자는 이미 납입한 보험료에 배당하는 금액만큼 보험계약대출을 받을 수 있다.","보험계약자는 보험계약대출금 및 이자를 언제든지 상환할 수 있다.","대출원리금은 상환일에 즉시 특별계정 펀드로 투입된다."],
+"answer":2,
+"expl":"보험계약대출금과 이자는 언제든지 상환할 수 있다(③). 상환금액은 상환일 즉시가 아니라 영업일 기준으로 특별계정에 반영되고, 대출이자 전액이 특별계정 재원이 되는 것도 아니다."},
+{"id":1020,"s":2,"type":"mc","q":"다음 중 변액보험의 투자수익률과 순수익률의 차이를 발생시키는 원인이 아닌 것은?",
+"opts":["최저보증비용","특별계정 운용보수","공시이율","기타비용"],
+"answer":2,
+"expl":"순수익률 = 투자수익률 − (보증비용, 특별계정 운용보수, 기타비용 등). 공시이율은 투자수익률과 순수익률의 차이와 무관하다."},
+{"id":1021,"s":2,"type":"mc","q":"다음 중 환매조건부채권(RP)에 대해 틀리게 설명한 것은?",
+"opts":["예금자보호법에 의한 보호대상 금융상품이다.","한국은행이 민간 금융회사에 매도하는 경우 한국은행 기준금리를 적용한다.","환매조건부채권 매도자는 채권 매각에 따른 자본손실 위험을 피할 수 있다.","투자자는 단기 여유자금을 안전하게 운용할 수 있다."],
+"answer":0,
+"expl":"환매조건부채권(RP)은 예금자보호법에 의한 보호대상 금융상품이 아니므로 ①이 틀렸다(해설)."},
+{"id":1022,"s":2,"type":"mc","q":"다음 중 금리의 기능에 대해 틀리게 설명한 것은?",
+"opts":["현재 소비와 장래 소비의 배분 기능","과열된 경기 조절 기능","합리적으로 자금을 배분하는 기능","물가 상승을 통한 국가 경제 성장 기능"],
+"answer":3,"rv":1,
+"expl":"금리에 '물가 상승을 통한 국가 경제 성장 기능'은 없다 — ④가 틀린 설명이다(해설). 정답표 판독은 ②라 상이하니 원본 대조를 권장합니다."},
+{"id":1023,"s":2,"type":"mc","q":"다음 표에서 설명하는 용어는 무엇인가?",
+"tb":["공동으로 투자하여 상대방의 경영과 법적 지위에 대하여 주주로서 사실상 지분율을 가지고,","지분권의 양도를 수반하는 지분 투자를 의미한다."],
+"opts":["스타트업","조인트벤처","자동연장권","컨버터블본드"],
+"answer":1,"rv":1,
+"expl":"공동투자로 지분을 보유하는 형태에 대한 설명으로 정답은 조인트벤처이다(정답표). 표 문구의 판독이 불완전하니 원본 대조를 권장합니다."},
+{"id":1024,"s":2,"type":"mc","q":"다음 중 변액보험에 대한 설명으로 틀린 것은?",
+"opts":["변액보험의 보험료 납입방법은 월납과 일시납만이 가능하다.","변액연금보험은 일반계정 연금보험과 동일한 형태로 보험계약자가 납입 수준, 납입기간, 납입방법을 선택한다.","법률상 변액보험에는 연금전환특약을 부가할 수 없다.","변액보험 특별계정의 의무납입기간 이후에는 정해진 납입기간 없이 보험기간 중 보험계약자가 원하는 때에 보험료를 납입할 수 있다."],
+"answer":2,"rv":1,
+"expl":"법률상으로도 변액보험에 연금전환특약을 활용(부가)할 수 있으므로 ③이 틀린 설명이다(해설). 정답표 판독은 ①이라 상이하니 원본 대조를 권장합니다."},
+{"id":1025,"s":2,"type":"mc","q":"다음 중 '예금자보호법'에 의해 가장 많은 금액을 보호받을 수 있는 상품은?",
+"opts":["생명보험회사 — 저축성보험 3,000만원","은행 — 보통예금 5,000만원(원금+이자)","손해보험회사 — 보증보험계약 4,000만원","은행 — 외화예금 2,000만원"],
+"answer":1,"rv":1,
+"expl":"은행 예금(원금+이자)은 1인당 5,000만원까지 보호된다. 보증보험·뮤추얼펀드는 비보호 금융상품이고(해설), 외화예금도 보호 대상이 아니다. 보기 문구는 판독을 정리한 것이라 원본 대조를 권장합니다."},
+{"id":1026,"s":2,"type":"mc","q":"다음 표에서 설명하고 있는 근로자의 세액공제대상 소득세 한도는 얼마인가?",
+"tb":["총급여액 5,500만원 이하 · 기타 소득 없음","연금계좌(연금저축)에 납입한 금액이 연 600만원이다.","개인형 퇴직연금(IRP)에 납입한 금액이 연 200만원이다.","확정급여형(DB형) 퇴직연금에 납입한 금액이 연 400만원이다."],
+"opts":["120만원","105만원","84만원","60만원"],
+"answer":0,"rv":1,
+"expl":"세액공제 대상은 연금계좌(연금저축+IRP) 납입액이며 DB형은 제외된다. 해설 기준 800만원 × 15% = 120만원. 표의 납입액 수치는 판독이 불완전하니 원본 대조를 권장합니다."},
+{"id":1027,"s":2,"type":"mc","q":"다음 중 변액보험에 대해 맞게 설명한 것은?",
+"opts":["납입보험료 전액이 실적배당을 위해 유가증권 등에 투자된다.","적립금에 최저보증이율이 있다.","변동보험금액은 최저보증금액 산정의 기초가 된다.","특별계정의 자산평가와 정산은 매일 실시한다."],
+"answer":3,
+"expl":"특별계정의 자산평가와 정산은 매일 실시한다(④ 맞음). 납입보험료 전액이 투자되는 것은 아니고(사업비 등 공제), 적립금에 최저보증이율은 없다(해설)."},
+{"id":1028,"s":2,"type":"mc","q":"다음 중 우리나라의 변액보험 도입 및 법적 규제에 대해 틀리게 설명한 것은?",
+"opts":["2003년 교차판매 제도의 시행과 더불어 변액보험이 도입되었다.","변액보험의 정의는 「보험업법」에 명시되어 있다.","변액보험 특별계정의 법적 성격은 자본시장법상 집합투자기구로 본다.","손해보험회사는 변액보험을 판매할 수 없다."],
+"answer":0,
+"expl":"변액보험의 도입은 교차판매 제도 시행과 무관하므로 ①이 틀렸다(해설). 특별계정은 자본시장법상 집합투자기구이고, 손해보험회사는 변액보험을 판매할 수 없다."},
+{"id":1029,"s":2,"type":"mc","q":"다음 중 변액보험의 현금흐름에 대한 설명으로 틀린 것은?",
+"opts":["납입보험료 중 순보험료는 일반계정에서 운용된다.","납입 후 계약유지비용은 보험료 납입기간 중 매월 모두 빠진다.","납입보험료 중 일부가 특별계정에서 운용된다.","위험보험료를 특별계정에서 차감하여 일반계정으로 보낸다."],
+"answer":0,
+"expl":"순보험료는 특별계정에 투입되어 운용된다(해설) — '일반계정에서 운용'은 틀렸다."},
+{"id":1030,"s":2,"type":"mc","q":"다음 중 변액보험 계산 방법의 하나인 일시납보험 추가가입방법에 대해 틀리게 설명한 것은?",
+"opts":["변액연금보험에서 사용되는 방법이다.","투자수익률이 좋을 경우 변동보험금이 크게 증가할 수 있다.","계산방법이 복잡하여 일반인들이 볼 수 있도록 주의가 필요하다.","우리나라 변액보험의 변동보험금은 월 1회 변동한다."],
+"answer":2,"rv":1,
+"expl":"정답표 기준 ③이 틀린 설명이다(해설 판독 불완전 — 원본 대조 권장)."},
+{"id":1031,"s":2,"type":"mc","q":"다음 표의 ( ) 안에 들어갈 숫자로 맞는 것은?",
+"tb":["보험계약 해지 시 계약자적립금에서 해약공제금액을 차감하여 보험계약자에게 지급하며,","해약공제금액은 해약일로부터 ( )간 발생한다."],
+"opts":["1","3","5","7"],
+"answer":3,
+"expl":"해약공제금액은 해약일로부터 최대 7년간 발생한다(해설: '최대 7년간 해약공제액이 발생한다')."},
+{"id":1032,"s":2,"type":"mc","q":"다음 중 금융소득의 과세방법에 대해 맞게 설명한 것은?",
+"opts":["금융소득을 포함한 종합소득 과세표준이 5억원을 초과 10억원 이하인 경우 적용되는 소득세율은 35%(지방소득세 별도)이다.","만기가 10년 이상인 장기채권(3년 이상 보유)에서 발생하는 이자는 무조건 종합과세 대상이다.","비과세 및 분리과세 소득을 제외한 금융소득이 2천만원을 초과하는 경우에는 종합과세한다.","금융소득 종합과세 여부는 부부의 금융소득 합계액을 기준으로 판단한다."],
+"answer":2,
+"expl":"비과세·분리과세 소득을 제외한 금융소득이 연 2천만원을 초과하면 종합과세한다(③ 맞음). 과세표준 5억~10억 구간 세율은 42%(35% 아님)이고, 종합과세 여부는 개인별로 판단한다(해설)."},
+{"id":1033,"s":2,"type":"mc","q":"다음 표에서 사망보험금 세제에 대한 설명으로 틀린 것을 모두 고른 것은?",
+"tb":["(가) 연금계좌 세액공제는 근로소득자만을 대상으로 한다.","(나) 피보험자의 사망으로 보험수익자가 지급받는 보험금의 비과세한도 과세대상이다.","(다) 사적연금소득의 합계액이 연 1,500만원 이하인 경우 분리과세를 선택할 수 없다."],
+"opts":["(가)","(가), (나)","(나), (다)","(가), (다)"],
+"answer":1,"rv":1,
+"expl":"(가) 연금계좌 세액공제는 근로소득이 없어도 가능하고, (나) 사망보험금은 실제 보험료 납입자에 따라 상속세·증여세 등이 과세될 수 있다 — (가),(나)가 틀린 설명이다(해설). (다) 문구는 판독이 불완전하니 원본 대조를 권장합니다."},
+{"id":1034,"s":2,"type":"mc","q":"다음 중 변액보험 특별계정펀드의 폐지사유에 해당하지 않는 것은?",
+"opts":["펀드 자산가치의 변화로 인해 효율적 자산운용이 곤란한 경우","설정 후 1년이 지난 펀드가 1개월간 계속하여 설정액이 50억원에 미달하는 경우","펀드의 운용대상이 소멸한 경우","펀드 개설 후 10년 이상 경과한 경우"],
+"answer":3,
+"expl":"10년이 경과했다는 이유로 펀드를 폐지하지는 않는다(해설)."},
+{"id":1035,"s":2,"type":"mc","q":"다음 중 위험프리미엄과 관련하여 맞게 설명한 것은?",
+"opts":["금융시장의 위험수준이 낮을수록 투자자들이 요구하는 위험프리미엄이 낮아진다.","투자수익률은 위험프리미엄과 관계가 없다.","주식보다 채권을 선호하는 투자자는 위험회피도가 낮다.","투자자는 자신이 부담하는 위험에 상응하는 보상을 받고자 하는데 이를 위험프리미엄이라고 한다."],
+"answer":3,
+"expl":"위험프리미엄은 위험 부담에 상응하는 보상이다(④ 맞음). 채권 등 안전자산을 선호하는 투자자는 위험회피도가 높다(③ 틀림, 해설)."},
+{"id":1036,"s":2,"type":"mc","q":"다음 표에서 설명하는 용어로 맞는 것은?",
+"tb":["중국 내 임금 및 원자재 값 상승 등으로 중국 제품의 수출단가가 오르면서,","중국산 수입 의존도가 높은 국가의 물가를 자극하는 현상"],
+"opts":["스태그플레이션(Stagflation)","차이나플레이션(Chinflation)","차이나디스카운트(China Discount)","디플레이션(Deflation)"],
+"answer":1,
+"expl":"중국발 수입물가 상승이 국내 물가를 자극하는 현상을 '차이나플레이션(Chinflation)'이라 한다."},
+{"id":1037,"s":2,"type":"mc","q":"다음 중 변액보험의 납입보험료의 처리에 대한 설명으로 틀린 것은?",
+"opts":["보험료 추가 납입 시 납입일 + 제2영업일에 특별계정으로 투입된다.","선납보험료는 월 계약해당일까지 평균공시이율로 적립한다.","제1회 보험료는 납입일 + 제2영업일에 특별계정으로 투입된다.","변액유니버셜보험의 경우 의무납입기간 이후 납입보험료에서 기타비용만 차감하여 특별계정으로 투입한다."],
+"answer":3,"rv":1,
+"expl":"정답표 기준 ④가 틀린 설명이다 — 납입보험료의 특별계정 투입·공제 방식 관련 사항으로 판독이 불완전하니 원본 대조를 권장합니다."},
+{"id":1038,"s":2,"type":"mc","q":"다음 중 주식 상장의 효과에 대해 틀리게 설명한 것은?",
+"opts":["회사의 공신력 제고","주식의 유동성 증가","자금조달의 용이성 확대","소유주식의 집중도 증가"],
+"answer":3,
+"expl":"주식 상장은 지분 매각으로 소유가 분산되는 효과가 있다 — '소유주식의 집중도 증가'는 상장의 효과가 아니다."},
+{"id":1039,"s":2,"type":"mc","q":"다음 중 금융시장 및 금융상품에 대해 틀리게 설명한 것은?",
+"opts":["단기금융시장은 자금시장이라고도 한다.","일반적으로 장기금융상품은 단기금융상품보다 거래율이 높다.","단기금융상품은 거래가 대규모로 이루어지고 유동성이 높다.","금융상품의 만기 3년을 기준으로 장·단기 금융시장으로 구분한다."],
+"answer":3,
+"expl":"장·단기 금융상품은 만기 1년을 기준으로 구분한다(해설) — '3년 기준'은 틀린 설명이다."},
+{"id":1040,"s":2,"type":"mc","q":"다음 중 변액보험 특별계정펀드의 계약자 보유좌수를 감소시키는 요인이 아닌 것은?",
+"opts":["적립금 중도인출","기준가격 하락","보험가입금액 감액","월대체보험료 지원"],
+"answer":1,
+"expl":"좌수는 돈이 투입되거나 빠져나갈 때만 변동한다 — 기준가격이 하락해도 보유좌수는 변하지 않는다(해설). ④ '월대체보험료 지원'은 '차감'의 판독으로 보아 좌수를 감소시키는 요인이다."}
+];
+
+/* 제3회 실전모의고사 (id 2001~2040, 표시 번호 = id-2000) */
+window.QUESTIONS3=[
+{"id":2001,"s":3,"type":"ox","q":"변액보험의 할증형 평준식 보험금이 자산운용성과에 따라 변동하는 보험계약이다.","answer":"O","rv":1,
+"expl":"변액보험은 실적배당(변동)보험으로 보험금이 특별계정 운용성과에 따라 변동한다 — 맞는 설명이다(해설). 문항 문면의 판독이 불완전하니 원본 대조를 권장합니다."},
+{"id":2002,"s":3,"type":"ox","q":"보험회사는 보험계약자로부터 5년 이내(사기 사실을 안 날로부터 1개월 이내)에 뚜렷한 사기에 의하여 계약이 성립된 것을 증명하는 경우 계약을 취소할 수 있다.","answer":"O","rv":1,
+"expl":"해설상 맞는 설명으로 처리했다 — 사기에 의한 계약 취소권 행사 기간에 대한 설명이다. 원본 대조를 권장합니다."},
+{"id":2003,"s":3,"type":"ox","q":"수익률이 낮은(안전한) 금융상품을 더 선호하는 투자자는 위험회피도가 낮다고 한다.","answer":"X","rv":1,
+"expl":"안전자산을 선호하는 투자자는 위험회피도가 높다(해설 교정: 낮다→높다)."},
+{"id":2004,"s":3,"type":"ox","q":"변액보험의 계약체결비용은 납입기간 이후에도 매월 계약체결일에 특별계정펀드에서 일반계정으로 차감한다.","answer":"X","rv":1,
+"expl":"계약체결비용은 특별계정에서 차감되는 비용이 아니다(해설)."},
+{"id":2005,"s":3,"type":"mc","q":"다음 중 변액보험의 일시납보험료 추가납입방법으로 개설하는 변액보험상품을 맞게 모두 고른 것은?",
+"tb":["(가) 변액종신보험","(나) 변액연금보험","(다) 변액유니버셜보험 적립형","(라) 변액유니버셜보험 보장형"],
+"opts":["(가), (나)","(가), (다)","(다), (라)","(나), (라)"],
+"answer":2,
+"expl":"일시납보험료 추가납입 방법으로 개설되는 것은 변액유니버셜보험(적립형·보장형)이다(정답표 ③)."},
+{"id":2006,"s":3,"type":"mc","q":"다음 표의 ( ) 안에 들어갈 내용을 순서대로 맞게 나열한 것은?",
+"tb":["변액보험 특별계정 적립금 자산은 (가)에 의해 평가하며, 운용자산은 원칙적으로 (나) 평가한다."],
+"opts":["(가) 시가법, (나) 매입","(가) 원가법, (나) 매월","(가) 시가법, (나) 매년","(가) 원가법, (나) 매일"],
+"answer":0,"rv":1,
+"expl":"특별계정 적립금 자산은 시가법으로 평가한다(해설: (가) 시가법). (나) 항목의 판독이 불완전하니 원본 대조를 권장합니다."},
+{"id":2007,"s":3,"type":"mc","q":"다음 중 변액보험의 보험료에 대해 맞게 설명한 것은?",
+"opts":["특별계정에서 운용되는 보험료는 납입보험료 전액이다.","계약관리비용 및 계약유지비용은 보험료 납입기간에만 사용하는 사업비이다.","일시납계약은 보험료 납입 이후 별도의 계약유지비용이 없다.","보험료 납입기한 이후의 계약유지비용은 일시납보험료에 미리 걷게 된다."],
+"answer":1,"rv":1,
+"expl":"특별계정에서 운용되는 보험료는 납입보험료의 일부이고(해설), 납입기간이 끝난 이후에도 계약 후 유지비용은 계속 발생한다(해설). 원본 보기와 대조가 필요합니다."},
+{"id":2008,"s":3,"type":"mc","q":"다음 중 변액보험 운용설명서에서 확인할 수 있는 항목이 아닌 것은?",
+"opts":["미래의 예상수익률","상품의 개요","변액보험 운용흐름","특별계정 보수 및 비용"],
+"answer":0,
+"expl":"운용설명서에는 미래의 예상수익률을 제시할 수 없다 — 확정된 예상수익률은 확인할 수 없는 항목이다."},
+{"id":2009,"s":3,"type":"mc","q":"다음 중 합성채권에 대해 틀리게 설명한 것은?",
+"opts":["교환사채는 교환청구 시 추가적인 자금 부담이 없다는 점에서 신주인수권부사채와 동일한 성격을 가진다.","전환사채는 주식으로 전환될 경우 채권의 효력이 없어진다.","신주인수권부사채는 신주인수권 행사 후에도 채권자의 지위를 유지한다.","교환사채는 자본금의 증가가 수반되지 않는다는 점에서 전환사채와 다르다."],
+"answer":0,"rv":1,
+"expl":"교환사채는 추가적인 자금 부담이 없지만 신주인수권부사채(BW)는 신주 인수 시 추가적인 자금 부담이 있다(해설) — '동일한 성격'은 틀린 설명이다."},
+{"id":2010,"s":3,"type":"mc","q":"다음 표에서 설명하는 금융시장은 무엇인가?",
+"tb":["기업어음시장의 단점을 보완하고 중장기적으로 기업의 자금조달을 지원하기 위해 2013년 1월 도입된 시장"],
+"opts":["기업어음시장","중기사채시장","통화안정증권시장","양도성예금증서시장"],
+"answer":1,"rv":1,
+"expl":"2013년 1월 도입된 중기사채 제도에 근거한 중기사채시장이다. 보기 문구의 판독이 불완전하니 원본 대조를 권장합니다."},
+{"id":2011,"s":3,"type":"mc","q":"다음 중 변액보험 특별계정펀드의 수익률에 대해 맞게 설명한 것은?",
+"opts":["펀드 최초 개설일 대비 오늘까지의 특별계정 수익률을 연환산수익률이라 한다.","펀드 설정일부터 오늘까지 총 경과일수 동안의 수익률을 1년 365일로 환산한 것을 누적수익률이라 한다.","변액보험의 연환산수익률은 투자실적이 악화될 경우 (−)수익률이 가능하다.","펀드 설정 후 1년 미만인 펀드에 대해서도 연환산수익률을 공시하도록 하고 있다."],
+"answer":2,"rv":1,
+"expl":"최초개설일 대비 수익률은 누적수익률, 경과일수를 1년으로 환산한 것이 연환산수익률로 ①②은 정의가 바뀌었고, 설정 후 1년 이내 펀드는 연환산수익률을 공시하지 않는다(해설). 따라서 (−)수익률 가능 설명인 ③이 맞다."},
+{"id":2012,"s":3,"type":"mc","q":"다음 중 유가증권 상장이 회사에 미치는 긍정적인 효과에 해당하지 않는 것은?",
+"opts":["주식의 유동성 증가","담보가치의 향상","소유주식의 집중","용이한 자금조달"],
+"answer":2,"rv":1,
+"expl":"주식 상장은 지분 매각으로 소유가 분산(집중도 완화)되는 효과가 있다 — '소유주식의 집중'은 긍정적 효과가 아니다."},
+{"id":2013,"s":3,"type":"mc","q":"다음 표에서 변액종신보험의 사망보험금은 얼마인가?",
+"tb":["가입상품: 변액종신보험 · 기본사망보험금: 1억원","사망일자: '21. 3. 10 · 보험금 청구일자: '21. 5. 10","일자별 변동보험금: '21.3.10 3,000만원 / '21.4.10 3,500만원 / '21.5.10 2,900만원"],
+"opts":["1억 2천 9백만원","1억 3천 5백만원","1억 3천만원","1억원"],
+"answer":0,
+"expl":"변액종신보험의 사망보험금 = 기본사망보험금 1억원 + 청구 시점의 변동보험금 2,900만원 = 1억 2천 9백만원(해설)."},
+{"id":2014,"s":3,"type":"mc","q":"다음 중 변액보험의 자산운용에 대해 맞게 설명한 것은?",
+"opts":["특별계정펀드는 안전성 위주로 자산을 운용한다.","보험계약자는 펀드변경을 통해 자산운용에 대한 간접투자방법을 가진다.","특별계정펀드와 일반계정의 자산 간 상호 매매·교환이 가능하다.","매일 공시이율을 산출하고 그 성과를 계약자적립금에 반영한다."],
+"answer":1,"rv":1,
+"expl":"특별계정은 수익성 위주로 운용하고(① 안정성→수익성), 계정 자산 간 상호 매매·교환은 불가능하며(해설), 성과 반영은 공시이율이 아닌 투자수익률로 한다(해설). 따라서 ②가 맞다."},
+{"id":2015,"s":3,"type":"mc","q":"다음 중 「자본시장법」상 금융투자업자의 고유업무에 해당하지 않는 것은?",
+"opts":["신탁업","투자중개업","집합투자업","대내외국환업무"],
+"answer":3,
+"expl":"대내외국환업무는 금융투자업의 고유업무가 아니다(은행업 고유업무, 해설)."},
+{"id":2016,"s":3,"type":"mc","q":"다음 중 종합소득으로 과세하는 소득이 아닌 것은?",
+"opts":["사업소득","근로소득","양도소득","연금소득"],
+"answer":2,
+"expl":"양도소득은 분류과세 소득으로 종합소득과세 대상이 아니다(해설)."},
+{"id":2017,"s":3,"type":"mc","q":"다음 중 변액보험의 보험계약대출에 대해 맞게 설명한 것은?",
+"opts":["보험계약대출이자는 전액 특별계정펀드로 투입된다.","보험계약자는 이미 납입된 보험료 범위 내에서 대출을 받을 수 있다.","상환된 보험계약대출금은 매월 계약해당일에 특별계정펀드로 이체된다.","보험회사는 계약해지 시 해약환급금에서 대출원리금을 차감한 후 지급할 수 있다."],
+"answer":3,"rv":1,
+"expl":"대출이자는 수수료를 차감한 일부만 특별계정에 반영되고, 상환된 대출금은 '상환일 + 제2영업일'에 이체된다(해설). 따라서 해지 시 해약환급금에서 대출원리금을 공제해 지급한다는 ④가 맞다."},
+{"id":2018,"s":3,"type":"mc","q":"다음 중 변액보험 특별계정펀드의 자산운용옵션에 대해 틀리게 설명한 것은?",
+"opts":["펀드간 운용구조 기능에서 펀드별 투자비율은 계약자가 설정할 수 있다.","펀드변경을 통해 보험회사는 보험계약자에게 자산운용에 대한 직접선택권을 부여한다.","보험료평균분할투자를 이용해 보험계약자는 리스크의 분산을 도모할 수 있다.","보험료평균분할투자는 주로 고액자금을 일시에 납입할 경우 활용된다."],
+"answer":3,"rv":1,
+"expl":"보험료평균분할투자는 고액자금을 한 번에 투입하지 않고 일정 기간에 나눠 투입하는 방식으로, 리스크 분산을 위한 수단이다. 보기 문구의 판독이 불완전하니 원본 대조를 권장합니다."},
+{"id":2019,"s":3,"type":"mc","q":"다음 표에서 설명하는 용어는 무엇인가?",
+"tb":["생명보험 설계사들이 모인 전문가 단체로, 백만불 원탁회의를 일컫는 용어"],
+"opts":["MDRT","MMDA","MORT","FRS"],
+"answer":0,
+"expl":"생명보험 설계사의 전문가 단체 '백만불 원탁회의'는 MDRT(Million Dollar Round Table)이다."},
+{"id":2020,"s":3,"type":"mc","q":"다음 중 금융소득의 과세방법에 대해 틀리게 설명한 것은?",
+"opts":["금융소득 종합과세 여부는 개인별 연간금융소득의 합계액으로 판단한다.","분리과세되는 금융소득은 원천징수로서 납세의무가 종결된다.","금융소득은 이자소득과 배당소득을 총칭하는 개념이다.","비과세 요건을 충족하지 못한 저축성보험의 보험차익은 분류과세한다."],
+"answer":3,"rv":1,
+"expl":"비과세 요건을 충족하지 못한 저축성보험의 보험차익은 분리과세되고(해설), 금융소득과 합산 2천만원 초과 시 종합과세된다. '분류과세'는 틀린 용어다."},
+{"id":2021,"s":3,"type":"mc","q":"다음 표에서 언급한 세제혜택(종합소득공제) 금액으로 맞는 것은?",
+"tb":["종합소득금액: 6천만원","연금저축계좌 납입액: 연 300만원","개인형 퇴직연금계좌(IRP) 납입액: 연 200만원"],
+"opts":["60만원","90만원","108만원","120만원"],
+"answer":0,
+"expl":"종합소득금액 4,500만원 초과 1.2억원 이하 → 연금계좌 세액공제율 12%. 공제대상은 연금저축 300만원+IRP 200만원=500만원 → 500만원×12%=60만원."},
+{"id":2022,"s":3,"type":"mc","q":"다음 중 변액유니버셜보험에 대한 설명으로 옳은 것은?",
+"opts":["일반계정에서 위험보장 등을 충당할 수 없을 경우 기본보험료가 감액된다.","적립형의 사망보험금은 이미 납입한 보험료를 최저보증하며 매월 추가로 변동된다.","변액유니버셜보험의 보험료납입기간은 보험기간(보장기간)과 같은 종신납입이 일반적이다.","의무납입기간 이후에는 기본보험료의 납입을 일시 중지할 수 없다."],
+"answer":2,"rv":1,
+"expl":"변액유니버셜보험의 보험료 납입기간은 보험기간과 같은 전기납(종신납입)이 일반적이다(해설). 의무납입기간 이후에는 보험료 납입을 일시 중지할 수 있다. 원본 대조를 권장합니다."},
+{"id":2023,"s":3,"type":"mc","q":"다음 중 한국은행의 기준금리 결정에 대한 설명으로 맞는 것을 모두 묶은 것은?",
+"tb":["(가) 한국은행 금융통합위원회는 기준금리를 결정한다.","(나) 기준금리의 결정은 6개월에서 12개월의 시차를 두고 총수요에 영향을 미친다.","(다) 한국은행은 통화정책 운용주체로서 물가안정목표를 채택하고 있다."],
+"opts":["(가), (나)","(나), (다)","(가), (다)","(가), (나), (다)"],
+"answer":0,"rv":1,
+"expl":"기준금리 결정 주체는 한국은행 금융통합위원회이고, 통화정책의 총수요에 대한 효과는 시차를 두고 나타난다. 보기 문구의 판독이 불완전하니 원본 대조를 권장합니다."},
+{"id":2024,"s":3,"type":"mc","q":"다음 중 변액연금보험에 대해 틀리게 설명한 것은?",
+"opts":["다양한 투자보증비용으로 인해 중도해지 시에도 원금손실은 발생하지 않는다.","변액종신보험과 달리 특정 영역에서 납입정지기능이 없는 것이 일반적이다.","펀드의 운용실적에 따라 해약환급금이 매일 변동한다.","저축성 보험이므로 최저사망보험금 보증은 적용되지 않는다."],
+"answer":3,
+"expl":"모든 변액보험에는 최저사망보험금 보증이 적용된다(해설) — ④가 틀린 설명이다. 중도해지 시에는 원금손실이 발생할 수 있다(해약환급금 최저보증 없음)."},
+{"id":2025,"s":3,"type":"mc","q":"다음 중 변액보험의 부활(효력회복)에 대해 맞게 설명한 것은?",
+"opts":["부활 시 특별계정펀드에서 관리하던 해약환급금을 일반계정으로 투입한다.","해약환급금 수령일로부터 3년 이내에 계약의 부활을 청구할 수 있다.","부활 시 연체보험료 외에 별도의 연체이자는 납입할 필요가 없다.","부활 시 계약자적립금은 해지한 시점의 계약자적립금을 기준으로 한다."],
+"answer":3,"rv":1,
+"expl":"해설 기준: 해약환급금을 수령하면 부활이 불가능하고(②), 부활 시 연체보험료 외에 평균공시이율+1% 범위 내 이자를 납부해야 하며(③), 부활은 해지 시점 기준으로 계약이 회복된다. 따라서 ④가 맞다."},
+{"id":2026,"s":3,"type":"mc","q":"다음 중 변액보험 주요내용 확인서의 내용으로 틀린 것은?",
+"opts":["특별계정의 운용에 따른 이익과 손실이 계약자에게 귀속된다는 내용","투자형 상품이므로 원금도달기간은 예시할 수 없다는 내용","납입보험료 중 수수료 등이 제외된 금액이 특별계정으로 투입된다는 내용","사외보관 자산과 예금자보호 대상 여부가 매일 변동된다는 내용"],
+"answer":3,"rv":1,
+"expl":"연금지급기간이 길며 원금도달예상기간은 평균공시이율을 가정하여 예시한다(해설). ④ 보기의 판독이 불완전하니 원본 대조를 권장합니다."},
+{"id":2027,"s":3,"type":"mc","q":"다음 중 변액보험 특별계정펀드의 채권형 펀드에 대해 틀리게 설명한 것은?",
+"opts":["채권 관련 파생상품에 투자하지 않는다.","양도성예금증서(CD), 콜론(Call Loan) 등에 투자할 수 있다.","안정적인 수익 확보를 목적으로 하므로 주식에 투자하지 않는다.","신용도가 낮은 회사채 등에 투자할 수 있다."],
+"answer":0,"rv":1,
+"expl":"채권형 펀드도 채권 관련 파생상품에 투자할 수 있다(해설) — ①이 틀린 설명이다. 정답표 판독과 상이하니 원본 대조를 권장합니다."},
+{"id":2028,"s":3,"type":"mc","q":"다음 중 거래소 정규시장에서 동시호가의 경우 적용되지 않는 매매거래 원칙은?",
+"opts":["가격우선의 원칙","시간우선의 원칙","수량배분의 원칙","위탁매매우선의 원칙"],
+"answer":1,"rv":1,
+"expl":"동시호가에서는 시간우선의 원칙이 적용되지 않고 가격우선·수량배분·위탁매매우선의 원칙이 적용된다(해설: 시간우선의 원칙). 정답표 판독과 상이하니 원본 대조를 권장합니다."},
+{"id":2029,"s":3,"type":"mc","q":"다음 중 변액보험의 추가납입보험료와 선납보험료에 대해 틀리게 설명한 것은?",
+"opts":["추가납입보험료는 계약자가 선 납입하기로 한 기본보험료 이외에 수시로 납입할 수 있는 보험료이다.","선납보험료는 납입기일 시작영업일에 특별계정으로 투입된다.","추가납입보험료는 계약자가 더 많은 수익을 얻을 수 있는 기회를 제공한다.","추가납입보험료와 선납보험료 모두 특별계정으로 투입될 수 있다."],
+"answer":1,"rv":1,
+"expl":"선납보험료는 매월 계약해당일에 특별계정으로 투입된다(해설) — '납입기일 시작영업일'은 틀린 설명이다. 정답표 판독과 상이하니 원본 대조를 권장합니다."},
+{"id":2030,"s":3,"type":"mc","q":"다음 표의 ( ) 안에 들어갈 용어로 적절한 것은?",
+"tb":["합리적으로 보험료를 산출하는 3대 구성요소 중, ( )이 낮아지면 사망보험료는 올라가게 되고, ( )이 높아지면 사망보험료는 내려가게 된다."],
+"opts":["예정위험률","예정이율","예정사업비율","예정해지율"],
+"answer":1,
+"expl":"예정이율이 낮아지면 사망보험료(연금보험료)는 올라가고, 예정이율이 높아지면 내려간다(해설: 예정이율)."},
+{"id":2031,"s":3,"type":"mc","q":"다음 중 보험회사의 수시공시 항목을 모두 고른 것은?",
+"tb":["(가) 임의공시사항","(나) 불완전판매비율","(다) 적격자산 조치 사항","(라) 소송에 의한 거액의 손실"],
+"opts":["(가), (나)","(가), (다)","(나), (다)","(다), (라)"],
+"answer":2,
+"expl":"수시공시 항목에는 불완전판매비율, 소송 관련 사항 등이 있다(해설 기준 (나),(라)에 해당 — 보기 문구는 판독을 정리한 것). 정답표 ③과 원본 대조를 권장합니다."},
+{"id":2032,"s":3,"type":"mc","q":"다음 중 생명보험계약에 대해 맞게 설명한 것은?",
+"opts":["보험증권 교부는 보험계약의 성립요건이다.","제1회 보험료가 납부되어야 보험계약이 성립한다.","보험료 납입과 보험금 지급은 대가관계에 있다.","인명의 생사를 보험사고로 하면 채권계약이 아니다."],
+"answer":2,
+"expl":"보험계약은 보험계약자의 청약에 보험회사의 승낙으로 성립하고(보험증권 교부·제1회 보험료 납부는 성립요건이 아님), 보험료 납입과 사고 시 보험금 지급 사이에는 채권채무 관계의 대가관계가 성립한다(해설)."},
+{"id":2033,"s":3,"type":"mc","q":"다음 중 변액종신보험에 대해 맞게 설명한 것은?",
+"opts":["해약환급금은 월 1회 재계산된다.","장해지급률 80%에 상응해서 사망보험금을 지급하고 계약이 소멸한다.","(−)변동보험금이 발생하는 경우 사망보험금이 기본보험금 이하로 감소한다.","계약자적립금에 대해 최저보증이율이 없다."],
+"answer":3,
+"expl":"계약자적립금에 대한 최저보증이율은 없다(④ 맞음). 해약환급금은 투자수익률에 따라 매일 변동하고, (−)변동보험금이 발생해도 사망보험금은 기본보험금 이하로 감소하지 않는다(해설)."},
+{"id":2034,"s":3,"type":"mc","q":"다음 중 변액연금보험의 최저보증(GMxB)에 대해 맞게 설명한 것은?",
+"opts":["사망 시점 이전의 투자실적에 관계없이 사망보험금을 보증한다(GMDB).","연금개시 이전의 투자실적에 관계없이 연금적립금을 최저보증한다(GMAB).","보험기간 중 일정 시점에 투자실적과 관계없이 예정최저적립금의 일정 수준만큼 인출할 수 있도록 최저보증한다(GMWB).","연금개시 이후 투자실적과 관계없이 사망 시점까지 일정 수준의 연금액을 최저보증한다(GLWB)."],
+"answer":1,"rv":1,
+"expl":"GMDB(사망보험금 최저보증)·GMAB(연금적립금 최저보증)·GMWB(인출 최저보증)·GLWB(연금액 최저보증)의 구분에 대한 문항이다. 정답표 ② 기준이며 보기·해설의 판독이 불완전하니 원본 대조를 권장합니다."},
+{"id":2035,"s":3,"type":"mc","q":"다음 중 일반계정과 특별계정(변액보험)의 비교로 틀린 것은?",
+"tb":["(가) 자산평가 시기 — 특별계정: 매일 / 일반계정: 매월","(나) 자산운용목적 — 특별계정: 수익성 위주 / 일반계정: 안정성 위주","(다) 최저보증이율 — 특별계정: 없음 / 일반계정: 있음","(라) 리스크부담 — 특별계정: 계약자 부담 / 일반계정: 보험회사 부담"],
+"opts":["(가) 자산평가 시기","(나) 자산운용목적","(다) 최저보증이율","(라) 리스크부담"],
+"answer":3,
+"expl":"해설 기준 ④ — 리스크부담 항목(표 안의 값)이 틀린 것으로 출제되었다. 특별계정의 리스크는 계약자가 부담한다."},
+{"id":2036,"s":3,"type":"mc","q":"다음 중 변액유니버셜보험에 대하여 틀리게 설명한 것은?",
+"opts":["생명보험회사와 손해보험회사에서 모두 판매할 수 있는 상품이다.","연금계좌 계약변경 대상이다.","일정 요건을 충족한 경우 납입자의 비과세 혜택이 있다.","발생한 소득은 이자소득으로 분류된다."],
+"answer":0,"rv":1,
+"expl":"변액유니버셜보험은 생명보험회사만 판매할 수 있다. 정답표 ① 기준이며 ① 보기의 판독이 불완전하니 원본 대조를 권장합니다."},
+{"id":2037,"s":3,"type":"mc","q":"다음 표에서 설명하는 용어로 맞는 것은?",
+"tb":["미국 캘리포니아 주 샌프란시스코 남단의 산타클라라 계곡 지역에 위치한, 미국의 유명한 전자·컴퓨터·소프트웨어 관련 산업이 밀집한 공간지역"],
+"opts":["나스닥(NASDAQ)","테크노밸리","실리콘(Silicon)","실리콘밸리(Silicon Valley)"],
+"answer":3,
+"expl":"미국 전자·컴퓨터 산업이 밀집한 샌타클라라 계곡 지역을 '실리콘밸리'라 한다."},
+{"id":2038,"s":3,"type":"mc","q":"다음 표에서 변액보험의 제1회 보험료가 특별계정펀드로 투입되는 시점은 언제인가?",
+"tb":["청약일: 11월 1일","제1회 보험료 납입일: 11월 2일","승낙일: 11월 10일","청약철회 종료일: 12월 1일"],
+"opts":["11월 10일","11월 11일","12월 1일","12월 2일"],
+"answer":3,
+"expl":"제1회 보험료는 청약철회기간이 끝나는 날(12월 1일) 다음 영업일에 특별계정에 투입된다 → 12월 2일(해설: 청약철회기간 종료일 + 제1영업일)."},
+{"id":2039,"s":3,"type":"mc","q":"다음 중 변액보험의 계약내용 변경에 대해 틀리게 설명한 것은?",
+"opts":["기본보험금액과 변동보험금액을 각각 다른 비율로 감액할 수 있다.","보험가입금액 감액 시 보험회사는 감액된 부분에 해당하는 해약환급금을 계약자에게 지급한다.","보험계약자는 보험회사의 승낙을 얻어 보험종목을 변경할 수 있다.","보험계약자는 필요한 경우 자산운용옵션을 변경할 수 있다."],
+"answer":0,
+"expl":"기본보험금액과 변동보험금액을 각각 다른 비율로 감액할 수는 없다(해설)."},
+{"id":2040,"s":3,"type":"mc","q":"다음 중 우리나라의 변액보험 도입 및 경과에 대해 맞게 설명한 것은?",
+"opts":["2008년 금융위기 시 변액보험 판매가 증가하였다.","2009년 「자본시장법」이 시행되면서 변액보험의 법적 근거가 마련되었다.","2000년대 보장성 보험료 자율화 이후 인플레이션 헤지를 위해 상품 도입이 추진되었다.","변액유니버셜(보장형)보험이 가장 먼저 도입되었다."],
+"answer":3,"rv":1,
+"expl":"변액유니버셜(보장형)보험이 가장 먼저 도입되었다(해설). 2008년 금융위기 시 판매는 감소했고, 도입의 법적 근거는 「보험업법」이다. ④ 보기 문구의 판독이 불완전하니 원본 대조를 권장합니다."}
+];
+
+/* 제4회 실전모의고사 (id 3001~3040, 표시 번호 = id-3000) */
+window.QUESTIONS4=[
+{"id":3001,"s":4,"type":"ox","q":"한국은행 금융통화위원회는 물가안정, 국민의 경제생활, 금융시장 안정 등을 종합적으로 고려하여 매월 기준금리를 결정한다.","answer":"X",
+"expl":"기준금리는 연 8회 결정한다(해설 교정: 매월→연 8회) — '매월'이 틀린 부분이다."},
+{"id":3002,"s":4,"type":"ox","q":"보험료를 납입하지 못하여 계약이 해지되었으나 해약환급금이 지급되지 않는 경우, 해지된 날로부터 3년 이내에 보험회사가 정하는 절차에 따라 부활을 청구할 수 있다.","answer":"O",
+"expl":"해약환급금이 지급되지 않은 해지 계약은 해지일로부터 3년 이내에 부활을 청구할 수 있다 — 맞는 설명이다(해설)."},
+{"id":3003,"s":4,"type":"ox","q":"변액보험의 최저사망보증 보증비용은 매월 계약해당일에 특별계정에서 차감된다.","answer":"O","rv":1,
+"expl":"최저사망보증금 보증비용은 매월 계약해당일에 차감한다(해설). 문항 문면의 판독이 불완전하니 원본 대조를 권장합니다."},
+{"id":3004,"s":4,"type":"ox","q":"변액유니버셜보험 특별계정의 변동보험금 계산방법은 변액종신보험의 변동보험금 계산방법과 동일하다.","answer":"X","rv":1,
+"expl":"저축성변액보험과 보장성변액보험의 변동보험금 계산방법은 서로 다르다(해설) — '동일하다'는 틀린 설명이다."},
+{"id":3005,"s":4,"type":"mc","q":"다음 표의 ( )에 들어갈 내용으로 맞는 것은?",
+"tb":["보험회사는 사고수령지급 및 파산일로부터 ( ) 이내에 「생명보험 경영공시업무기준」에서 정한 정기공시 항목의 내용을 공시해야 한다."],
+"opts":["1개월","2개월","3개월","4개월"],
+"answer":2,"rv":1,
+"expl":"해설 기준 3개월 — 파산일 등으로부터 3개월 이내에 정기공시를 해야 한다. 원본 대조를 권장합니다."},
+{"id":3006,"s":4,"type":"mc","q":"다음 중 변액보험 특별계정 투입보험료에 대해 맞게 설명한 것을 모두 고른 것은?",
+"tb":["(가) 보험계약자가 납입하는 계획된 보험료는 즉시 특별계정펀드로 투입된다.","(나) 변액종신보험 특별계정펀드 투입보험료는 납입보험료에서 계약체결비용 및 계약관리비용 등을 차감한 것이다.","(다) 변액보험 특약보험료는 전혀 일반계정에서 운용되며, 특별계정펀드와는 무관하게 운용된다."],
+"opts":["(가), (나)","(나), (다)","(가), (다)","(가), (나), (다)"],
+"answer":1,"rv":1,
+"expl":"(나)가 맞다. 제1회 보험료는 청약철회기간 이후 승낙일(또는 그 다음날)에 투입되므로 (가) '즉시 투입'은 틀리고(해설), (다) 특약보험료의 운용 방식은 원본 확인이 필요하다(보기 판독 불완전 — ②와 ④가 동일하게 판독됨)."},
+{"id":3007,"s":4,"type":"mc","q":"다음 표에서 설명하는 금융투자업무는?",
+"tb":["금전, 부동산 및 동산 등의 자산들을 수탁받아 위탁자의 이익이나 특정목적을 위해 관리하는 업무"],
+"opts":["신탁업","투자매매업","신탁투자업","투자자문업"],
+"answer":0,
+"expl":"타인의 자산을 수탁해 관리하는 업무는 신탁업이다."},
+{"id":3008,"s":4,"type":"mc","q":"다음 중 변액연금보험의 상품안내에 대해 틀리게 설명한 것은?",
+"opts":["(−)수익률 가정에 의한 해약환급금도 함께 예시하여야 한다.","가장 높은 투자수익률 가정은 평균공시이율 × 1.5배이다.","투자수익률 예시에 사용되는 평균공시이율은 매년 고시된다.","최저연금적립금을 미보증하는 상품의 투자수익률 가정은 (−)평균공시이율을 포함하여 3개 이하여야 한다."],
+"answer":1,"rv":1,
+"expl":"정답표 기준 ② — 투자수익률 예시 관련 설명(평균공시이율은 매년 재산정되므로 예시가 동일하지 않다, 해설). 판독이 불완전하니 원본 대조를 권장합니다."},
+{"id":3009,"s":4,"type":"mc","q":"다음 중 변액보험의 도입 배경(필요성)이 아닌 것은?",
+"opts":["물가상승에 대응하는 보험금의 실질가치 보장","보험회사의 금리리스크 적정 관리","주식, 채권 등의 대안 투자 증가로 자본시장 발전 도모","정형보험의 보험기간 장기"],
+"answer":2,"rv":1,
+"expl":"변액보험 도입 배경은 인플레이션 헤지, 금리리스크 관리, 장기 보험기간의 실질가치 보전 등이다 — '자본시장 발전 도모'는 배경으로 보기 어렵다(판독 불완전 — 원본 대조 권장)."},
+{"id":3010,"s":4,"type":"mc","q":"다음 표에서 A씨의 상속재산으로 보는 보험금은 얼마인가?",
+"tb":["보험계약자: A씨 · 피보험자: B씨(배우자)","납입보험료 8천만원 중 2천만원은 A씨가, 6천만원은 B씨가 납입","B씨의 사망으로 A씨가 사망보험금 1억원 수령"],
+"opts":["1억원","8천만원","4천만원","7천5백만원"],
+"answer":3,
+"expl":"실제 보험료 납입자의 비율만큼이 상속재산으로 본다: 1억원 × 6,000/8,000 = 7,500만원."},
+{"id":3011,"s":4,"type":"mc","q":"다음 표에서 설명하는 용어로 맞는 것은?",
+"tb":["금리가 낮은 통화로 자금을 조달해 금리가 높은 나라의 금융상품 등에 투자함으로써 수익을 내는 거래"],
+"opts":["엔화스왑","캐리 트레이드","선물거래","옵션거래"],
+"answer":1,
+"expl":"저금리 통화 조달 → 고금리 자산 투자 거래는 캐리 트레이드이다(해설)."},
+{"id":3012,"s":4,"type":"mc","q":"다음 표의 ( ) 안에 들어갈 용어로 적합한 것은?",
+"tb":["금융통화위원회의 기준금리 결정은 초단기금리인 ( )에 즉시 영향을 미치고,","장단기 시장금리, 예금 및 대출금리 등의 변동으로 궁극적으로 실물경제 활동에 영향을 미치게 된다."],
+"opts":["채권수익률","콜금리","실질금리","표면금리"],
+"answer":1,
+"expl":"기준금리가 즉시 영향을 미치는 초단기금리는 콜금리이다(해설)."},
+{"id":3013,"s":4,"type":"mc","q":"다음 중 변액보험의 펀드 선택에 대한 설명으로 틀린 것은?",
+"opts":["특별계정 운용보수는 선택한 펀드에 따라 그 부과율이 다를 것이 일반적이다.","수익성을 추구하는 고객은 채권형 펀드보다 주식형 펀드를 선택하는 것이 바람직하다.","특별계정 최초 개설 시 기준가격은 1,000좌당 1,000원인 것으로 시작한다.","변액연금보험의 변액적립보험 모두 보험기간이 경과할수록 위험보험료가 증가하므로 펀드 투입액이 줄어든다."],
+"answer":3,"rv":1,
+"expl":"변액종신보험은 경과기간이 길수록 위험보험료가 증가해 펀드 투입금액이 줄어들지만, 변액연금보험은 위험보험료 비중이 작아 오히려 펀드 투입금액이 증가한다(해설) — ④가 틀린 설명이다."},
+{"id":3014,"s":4,"type":"mc","q":"다음 중 주식 및 채권에 대해 맞게 설명한 것은?",
+"opts":["정부나 지방자치단체도 주식을 발행할 수 있다.","채권은 타인자본으로 재무제표상 부채계정으로 처리된다.","주주와 채권자는 회사경영에 동일한 지위를 갖는다.","기업의 청산 시 주주는 채권자에 우선하여 변제받을 권리가 있다."],
+"answer":1,
+"expl":"채권은 타인자본으로 부채계정에 처리된다(② 맞음). 주식은 주식회사만 발행할 수 있고(① 틀림), 청산 시 채권자가 주주보다 우선변제된다(④ 틀림, 해설)."},
+{"id":3015,"s":4,"type":"mc","q":"다음 표에서 종신형 연금보험계약의 보험차익 비과세 요건에 대해 틀리게 설명한 것을 모두 고른 것은?",
+"tb":["(가) 연금 외의 형태로 보험금을 지급하지 않는 것일 것","(나) 사망 시 보험계약 및 연금재원이 소멸하지 않을 것","(다) 최초 연금수령 시 이후 사망일 전에 계약을 중도해지할 수 없을 것","(라) 만 60세 이후부터 사망 시까지 보험금을 연금으로 지급받는 계약일 것"],
+"opts":["(가), (나)","(나), (라)","(가), (다)","(다), (라)"],
+"answer":1,"rv":1,
+"expl":"(나)는 '사망 시 보험계약 및 연금재원이 모두 소멸할 것'이 요건이다(해설) — 틀린 요건 조합은 (나),(라)(정답표). 원본 대조를 권장합니다."},
+{"id":3016,"s":4,"type":"mc","q":"다음 중 금융소득 과세방법에 대해 틀리게 설명한 것은?",
+"opts":["비과세 및 분리과세 소득까지 합산한 연간 금융소득이 2천만원을 초과하는 경우 금융소득 전체를 종합과세한다.","금융소득 종합과세 여부는 개인별 연간금융소득의 합산액으로 판단한다.","금융소득이 종합과세되는 경우 다른 소득과 합산하여 소득세율을 적용한다.","비과세 및 분리과세 소득을 제외한 연간 금융소득이 2천만원인 경우 14%(지방소득세 별도)로 원천징수하여 납세의무가 종결된다."],
+"answer":0,
+"expl":"비과세·분리과세 소득을 '제외한' 연간 금융소득이 2천만원을 초과할 때 종합과세한다(해설 교정) — ①이 틀린 설명이다."},
+{"id":3017,"s":4,"type":"mc","q":"다음 변액보험 특별계정(펀드) 운용현황표에서 ( ) 안에 들어갈 누적수익률로 맞는 것은?",
+"tb":["기준가격 1,600.00 · 전일대비 +3.0 · 누적수익률 ( ) · 연환산수익률 20.00%"],
+"opts":["17.00%","18.00%","23.00%","60.00%"],
+"answer":3,
+"expl":"누적수익률 = (1,600 − 1,000) ÷ 1,000 = 60%(해설)."},
+{"id":3018,"s":4,"type":"mc","q":"다음 중 예금자보호제도에 대해 틀리게 설명한 것은?",
+"opts":["예금보험료는 금융회사가 납부한다.","예금보험사고 발생 시 예금보험금은 고객이 지급받는다.","변액보험은 '예금자보호법'에 따라 보호되는 부분이 없다.","법령상 보호한도가 설정되어 있다."],
+"answer":2,"rv":1,
+"expl":"변액보험도 저축성보험료 부분은 예금자보호법의 보호 대상이 될 수 있다(해설) — ③이 틀린 설명이다. 원본 대조를 권장합니다."},
+{"id":3019,"s":4,"type":"mc","q":"다음 표의 ( ) 안에 들어갈 용어로 맞는 것은?",
+"tb":["금융거래 중 금융거래질서를 해치고 가계신용을 침해하는 비율(비용)을 ( )이라 한다."],
+"opts":["정산비용","위험비용","담보비용","의사비용"],
+"answer":2,"rv":1,
+"expl":"이 문항의 보기·해설 판독이 심각하게 불완전하다(해설 행의 정답 옵션명이 원본 보기와 일치하지 않음). ③으로 우선 입력했으니 반드시 원본과 대조해 수정하세요."},
+{"id":3020,"s":4,"type":"mc","q":"다음 중 변액보험의 변동보험금에 대해 맞게 설명한 것은?",
+"opts":["최저보증비용에 비례하여 기초가 된다.","투자손실이 발생할 경우 보험료를 추가납부해야 한다.","보험료 산출의 기초가 된다.","특별계정의 운용실적에 따라 추가로 계산된다."],
+"answer":3,
+"expl":"변동보험금은 특별계정의 운용실적에 따라 추가로 계산된다(④). 투자손실이 발생하더라도 추가보험료 부담은 없다(해설)."},
+{"id":3021,"s":4,"type":"mc","q":"다음 중 변액보험의 해약환급금에 대해 틀리게 설명한 것은?",
+"opts":["중도해지 시 해약환급금에서 보험계약대출금을 차감할 수 있다.","보험료 납입기간 중에는 해약환급금이 이미 납입한 보험료를 초과할 수 없다.","보험기간, 보험료 납입횟수 등에 따라 달라진다.","특별계정 적립금에서 해약공제액을 차감하여 해약환급금으로 지급한다."],
+"answer":1,
+"expl":"투자실적이 좋은 경우 보험료 납입기간 중에도 해약환급금이 납입보험료를 초과할 수 있다(해설) — ②가 틀린 설명이다."},
+{"id":3022,"s":4,"type":"mc","q":"다음 중 변액보험의 보험료 납입에 대해 맞게 설명한 것은?",
+"opts":["변액유니버셜보험은 의무납입기간 중 보험료를 추가납입할 수 없다.","변액연금보험은 보험료 선납이 허용되지 않는다.","변액종신보험의 보험료 납입기간은 종신이며, 계약자가 임의로 선택할 수 없다.","변액종신보험의 보험료는 월납과 연납으로만 납입 가능하다."],
+"answer":2,
+"expl":"변액연금보험은 보험료의 배수로 선납이 허용되고(② 틀림), 변액종신보험 보험료는 월납·일시납만 가능하며(④ 틀림), 의무납입기간 중에도 추가납입은 가능하다(① 틀림, 해설). 따라서 ③이 맞다."},
+{"id":3023,"s":4,"type":"mc","q":"다음 중 변액보험의 보험계약대출에 대해 맞게 설명한 것은?",
+"opts":["보험계약자가 납입한 보험계약대출 수수료는 특별계정펀드로 투입되지 않는다.","대출금상환액은 상환일에 즉시 특별계정펀드로 투입된다.","보험계약대출의 이율은 일반상품 대출이율과 연동된다.","보험계약대출 시 별도의 이자가 부과되지 않는다."],
+"answer":0,
+"expl":"대출 수수료는 특별계정펀드로 투입되지 않는다(① 맞음). 상환금액은 '상환일 + 제2영업일'에 반영되고(② 틀림), 대출에는 별도의 이자가 부과된다(④ 틀림, 해설)."},
+{"id":3024,"s":4,"type":"mc","q":"다음 표에서 A씨의 상속세 산출세액(징수세액 별도)은 얼마인가?",
+"tb":["A씨의 상속세 과세표준: 5억원"],
+"opts":["5천만원","9천만원","1억원","1억5천만원"],
+"answer":1,
+"expl":"상속세 = 1억원 × 10% + 4억원 × 20% = 9,000만원(해설: 과세표준 1억 이하 10%, 1억 초과~5억 이하 20%)."},
+{"id":3025,"s":4,"type":"mc","q":"다음 중 변액보험의 특별계정 투입보험료에 대해 맞게 설명한 것은?",
+"opts":["계약유지비용은 보험료를 납입하는 기간 이내에만 사용하는 사업비이다.","납입 후 계약유지비용은 적립금액이 보험료 납입이 완료되면 그때마다 관리비에서 차감하여 사용하게 된다.","특별계정 투입보험료는 순보험료에 납입 중 계약유지비용을 합한 금액이다.","변액보험에서는 연령이 증가함에 따라 특별계정(펀드)으로 투입되는 금액이 작아진다."],
+"answer":2,
+"expl":"특별계정 투입보험료 = 순보험료 + 납입 중 계약유지비용이다(③ 맞음). 계약유지비용은 납입기간 이후에도 발생한다(① 틀림, 해설)."},
+{"id":3026,"s":4,"type":"mc","q":"다음 중 변액유니버셜보험에 대해 틀리게 설명한 것은?",
+"opts":["변액유니버셜보험적립형에서 초과적립금이 발생할 경우 변액보험료를 추가로 가입하여 보장수준을 높일 수 있다.","현재 판매 중인 변액유니버셜보장형은 기본보장형만 있는 형태가 대부분이다.","변액유니버셜보험적립형은 기본사망보험금을 사망보험금으로 최저보증한다.","변액유니버셜적립형의 사망보험금은 매일 변동한다."],
+"answer":2,"rv":1,
+"expl":"변액유니버셜보험(적립형)은 이미 납입한 보험료를 사망보험금으로 최저보증한다(해설) — '기본사망보험금으로 최저보증'은 틀린 설명이다. 원본 대조를 권장합니다."},
+{"id":3027,"s":4,"type":"mc","q":"다음 중 변액보험과 일반종신보험의 공통점이 아닌 것은?",
+"opts":["다양한 선택특약을 자유롭게 조립할 수 있다.","투자실적에 따라 사망보험금이 변동한다.","우량체할인 특약을 통해 보험료 할인혜택을 받을 수 있다.","보장성보험료 세액공제혜택을 받을 수 있다."],
+"answer":1,
+"expl":"사망보험금이 투자실적에 따라 변동하는 것은 변액보험만의 특징이다 — 일반종신보험의 사망보험금은 고정되어 있다(해설)."},
+{"id":3028,"s":4,"type":"mc","q":"다음 표에서 설명하는 용어로 맞는 것은?",
+"tb":["이미 비용이 지불되고 계획이 실행된 후에는 어떤 선택을 하더라도 회수할 수 없는 비용"],
+"opts":["고정비용","매몰비용","기회비용","신규비용"],
+"answer":1,
+"expl":"회수할 수 없는 이미 지출된 비용은 매몰비용이다(해설)."},
+{"id":3029,"s":4,"type":"mc","q":"다음 중 수지상등의 원칙에 대해 틀리게 설명한 것은?",
+"opts":["보험계약자 개개인으로 본다고 해도 수지상등의 원칙은 항상 적용된다.","보험회사의 수입보험료 총액과 지급보험금, 사업비 등의 지출총액이 균형을 이루는 것을 말한다.","보험계약자로서는 납입보험료와 보험금 사이에 차이가 날 수도 있다.","보험회사가 경영을 지속적으로 유지하기 위해 필요한 조건이다."],
+"answer":0,
+"expl":"수지상등의 원칙은 계약자 개개인에게는 일반적으로 적용되지 않고 보험회사 전체(집단)에 적용되는 원칙이다(해설 교정)."},
+{"id":3030,"s":4,"type":"mc","q":"다음 중 변액보험 판매 시 준수사항에 대해 틀리게 설명한 것은?",
+"opts":["모집종사자는 적합성 진단결과 보험계약자에게 적합하지 아니하다고 인정되는 보험계약의 체결을 권유해서는 안 된다.","변액보험 판매 시 보험계약자에게 변액보험 주요내용 요약서를 교부하여야 한다.","변액보험을 판매하는 설계사는 매년 2시간 보수교육을 이수하여야 한다.","보험회사 및 모집종사자는 적합성 진단과 관련하여 보험계약자로부터 얻은 내용을 10년(보장기간이 10년을 초과하는 경우는 보장기간) 동안 유지·관리하여야 한다."],
+"answer":2,
+"expl":"변액보험 판매 설계사는 매년 4시간의 보수교육을 이수해야 한다(해설 교정: 2시간→4시간)."},
+{"id":3031,"s":4,"type":"mc","q":"다음 중 변액보험의 공시에 대해 맞게 설명한 것은?",
+"opts":["저축성 변액보험의 수수료 안내표는 보험가입 전에만 확인이 가능하다.","생명보험협회 인터넷 홈페이지를 통해 타사 펀드수익률과 최근 기준가격을 비교하여 볼 수 있다.","보험회사는 반기별 1회 이상 보험계약자에게 보험계약관리내용을 제공하여야 한다.","매일의 변액보험 펀드별 기준가격 및 수익률은 생명보험협회 공시실에서 확인할 수 없다."],
+"answer":1,"rv":1,
+"expl":"수수료 안내표는 가입 전후 모두 확인할 수 있고(① 틀림), 협회 공시실에서 타사 펀드수익률·기준가격 비교가 가능하다(② 맞음). 판독이 불완전하니 원본 대조를 권장합니다."},
+{"id":3032,"s":4,"type":"mc","q":"다음 표의 경우 변액보험의 계약자가 보유하게 되는 계약자 보유좌수는?",
+"tb":["납입보험료 중 특별계정(펀드) 투입보험료: 2백만원","특별계정(펀드) 투입일의 펀드 기준가격: 2,000원(1,000좌당)"],
+"opts":["100만좌","200만좌","1,000만좌","2,000만좌"],
+"answer":2,"rv":1,
+"expl":"좌수 = 투입보험료 ÷ 기준가격(1,000좌당) × 1,000이다(해설 공식). 표의 수치 판독이 불완전하니(2백만원/2천만원) 원본 대조를 권장합니다."},
+{"id":3033,"s":4,"type":"mc","q":"다음 중 변액보험의 계약내용에서 변경할 수 없는 것은?",
+"opts":["보험계약 체결 시 선택한 펀드","보험가입금액의 감액","변액유니버셜보험의 보험기간","변액보험 자산운용옵션"],
+"answer":2,
+"expl":"변액유니버셜보험의 보험기간은 변경할 수 없다(해설)."},
+{"id":3034,"s":4,"type":"mc","q":"다음 중 채권투자에 대해 맞게 설명한 것을 모두 고른 것은?",
+"tb":["(가) 개인의 채권투자는 증권회사가 보유하고 있는 채권을 채권중개전문가(브로커) 영업식으로 거래하는 것이 보통이다.","(나) 일반적으로 주식보다 수익성이 좋고 매매에 비해 안전성이 높다.","(다) 주식의 3일 결제와 달리 익일 또는 당일결제가 가능하다."],
+"opts":["(가)","(가), (나)","(가), (다)","(나), (다)"],
+"answer":2,
+"expl":"(나)가 틀렸다 — 채권은 주식보다 수익성이 낮고 안정성이 높다(해설). (가),(다)가 맞는 설명이다."},
+{"id":3035,"s":4,"type":"mc","q":"다음 중 변액보험의 최저보증(GMxB) 관련 약관에 대해 맞게 설명한 것은?",
+"opts":["최저사망보험금보증(GMDB)은 변액유니버셜적립형만 보증하는 옵션이다.","이미 납입한 보험료 등 연금개시 시점의 계약자적립금(연금재원)으로 보증하는 옵션이다.","최저연금적립금보증(GMWB)은 연금개시 후 보장기간 중 연금재원을 특별계정에서 운용할 경우 투자실적에 관계없이 연금재원의 일정 수준을 인출할 수 있도록 보증하는 옵션이다.","최저사망보험금보증(GMDB)은 변액종신보험, 변액연금보험 및 변액유니버셜보장형에 모두 적용될 수 없다."],
+"answer":1,"rv":1,
+"expl":"연금개시 시점의 계약자적립금(연금재원)으로 보증하는 옵션(GMAB)에 대한 설명이 ②이다. 해설 행의 판독이 불완전하니 원본 대조를 권장합니다."},
+{"id":3036,"s":4,"type":"mc","q":"다음 중 보험회사의 일반계정과 특별계정(변액보험)을 비교한 내용으로 맞는 것은?",
+"tb":["(가) 리스크부담 — 일반계정: 계약자 / 특별계정: 보험회사","(나) 자산평가주기 — 일반계정: 매일 / 특별계정: 매년","(다) 결산시기 — 일반계정: 매월 / 특별계정: 매년","(라) 자산운용목적 — 일반계정: 수익성위주 / 특별계정: 안정성위주"],
+"opts":["(가)","(나)","(다)","(라)"],
+"answer":2,"rv":1,
+"expl":"해설 기준 ③ — (다) 항목이 맞는 것으로 출제되었다. 특별계정은 계약자가 리스크를 부담하고, 자산평가는 매일, 운용목적은 수익성이다. 표 판독이 뒤섞여 있어 원본 대조 필수입니다."},
+{"id":3037,"s":4,"type":"mc","q":"다음 중 변액보험 특별계정펀드를 주식형, 채권형, 혼합형 펀드 등으로 구분하는 기준은?",
+"opts":["채권의 편입비율","주식의 편입비율","펀드 운용회사의 과거수익률","펀드 자산운용의 위탁여부"],
+"answer":1,
+"expl":"펀드 유형 구분 기준은 주식의 편입비율이다."},
+{"id":3038,"s":4,"type":"mc","q":"다음 중 변액보험 특별계정펀드의 자산운용옵션에 대해 틀리게 설명한 것은?",
+"opts":["보험계약자는 언제든지 자산배분 기능의 적용여부를 선택할 수 있다.","펀드변경을 통해 보험회사는 보장방식에 따라 자산운용에 대한 간접자산선택권을 부여한다.","보험료 분산투입 기능을 이용해 보험계약자는 리스크를 분산·통제할 수 있다.","일시납 보험료는 그 자체로 이미 일시성 분할투자가 적용되어 있어, 펀드자동재배분 기능이 불필요하다."],
+"answer":3,"rv":1,
+"expl":"일시납 보험료와 펀드자동재배분 기능은 별개로 적용된다 — ④의 비교 문구(일시납=월납)는 틀린 설명이다(해설 행 판독 불완전, 원본 대조 권장)."},
+{"id":3039,"s":4,"type":"mc","q":"다음 중 주가수익비율(PER)에 대해 틀리게 설명한 것은?",
+"opts":["채권금리와 역수의 관계가 유사하다.","주가가 1만원이고 주당 순이익이 1천원이면 PER은 10배가 된다.","주식의 현금창출능력과 현재가격을 비교하는 것이다.","PER이 낮은 주식은 앞으로 주식가격이 하락할 가능성이 크다."],
+"answer":3,
+"expl":"PER이 낮은 주식은 주가가 상승할 가능성이 크다는 것이 일반적 해석이다(해설 교정: 하락→상승)."},
+{"id":3040,"s":4,"type":"mc","q":"다음 중 주식의 매매거래에 대한 설명으로 틀린 것은?",
+"opts":["현행 한국거래소 정규시장의 매매거래시간은 9시~15시 30분(6시간 30분)이다.","코스닥시장에서 호가되는 가격단위는 1원에서 1천원까지 7단계로 구분된다.","투자자에게 추가적인 매매기회를 부여하기 위한 시간외 시장은 개장 전 8시~9시(1시간), 장종료 후 15시 40분~18시(2시간 20분)로 운영되고 있다.","주식의 매매거래는 매매계약을 체결한 날로부터 3일째 되는 날(휴업일 제외)에 결제가 이루어지는 보통결제약정에 따른다."],
+"answer":1,
+"expl":"호가단위는 유가증권시장 7단계, 코스닥시장 5단계로 적용된다(해설 교정) — '코스닥 7단계'인 ②가 틀린 설명이다."}
+];
+
+/* 제5회 실전모의고사 (id 4001~4040, 표시 번호 = id-4000) */
+window.QUESTIONS5=[
+{"id":4001,"s":5,"type":"ox","q":"변액유니버셜보험의 보험료 납입은 신축적이지만, 보험료 산출 시 수익성 가이드라인을 충족해야 한다.","answer":"O","rv":1,
+"expl":"보험료 산출 시 수익성 가이드라인을 충족해야 한다는 것이 원칙이다(해설). 문항 문면의 판독이 불완전하니 원본 대조를 권장합니다."},
+{"id":4002,"s":5,"type":"ox","q":"주식은 주주명부에 기재되었는지 여부에 따라 기명주식과 무기명주식으로 구분되며, 우리나라의 대부분의 주식은 무기명주식이다.","answer":"X","rv":1,
+"expl":"우리나라의 대부분의 주식은 기명식 주식이다(해설 교정) — '무기명주식'이 틀린 부분이다."},
+{"id":4003,"s":5,"type":"ox","q":"생명보험회사의 책임준비금은 보험계약자가 제1회 보험료를 납입한 때부터 적립한다.","answer":"O","rv":1,
+"expl":"책임준비금은 제1회 보험료 납입 시점부터 적립된다는 취지의 설명으로 판정했다(해설). 판독이 불완전하니 원본 대조를 권장합니다."},
+{"id":4004,"s":5,"type":"ox","q":"변액보험 특별계정펀드의 운용보수는 특별계정에 속한 재산의 운용 및 관리 등을 위해 부과한다.","answer":"O","rv":1,
+"expl":"특별계정 운용보수는 펀드 재산의 운용·관리를 위해 부과된다 — 맞는 설명이다."},
+{"id":4005,"s":5,"type":"mc","q":"다음 중 변액보험의 공시에 대해 틀리게 설명한 것은?",
+"opts":["특별계정펀드의 기준가격, 수익률 및 보수·수수료 등은 생명보험협회 공시실에서 매월 1회 공시된다.","변액보험은 일반보험과 동일한 정보공시 기준이 적용된다.","보험회사는 인터넷 홈페이지에 특별계정 운용현황 및 변액보험 운용설명서 등을 공시해야 한다.","변액보험의 계약자관리내용은 분기별 1회 이상 통보해야 한다."],
+"answer":1,"rv":1,
+"expl":"정답표 기준 ② — 변액보험은 일반보험보다 강화된 별도의 공시 기준이 적용된다('동일 기준'은 틀린 설명). 보기 문구의 판독이 불완전하니 원본 대조를 권장합니다."},
+{"id":4006,"s":5,"type":"mc","q":"다음 중 변액보험의 자산 평가방법에 대해 틀리게 설명한 것은?",
+"opts":["매일 기준가격방법을 사용하여 특별계정펀드 적립금을 산출한다.","당일의 기준가격은 전일의 특별계정적립금의 전체 순자산가치를 특별계정펀드 총좌수로 나누어 산출한다.","매일 동일한 금액이 특별계정펀드로 투입되면 증가하는 보유좌수도 동일하다.","특별계정펀드의 자산운용 실적이 호전되면 기준가격이 상승한다."],
+"answer":2,
+"expl":"매일 동일한 금액이 투입되더라도 투입일의 기준가격에 따라 취득하는 보유좌수는 달라진다(해설) — ③이 틀린 설명이다."},
+{"id":4007,"s":5,"type":"mc","q":"다음 표의 ( ) 안에 들어갈 용어로 맞는 것은?",
+"tb":["변액보험 특별계정펀드의 원활한 운영을 위하여 최초 개설 시 보험회사 자산의 일부를 펀드에 투입하여 초기 펀드의 자산(시드머니) 규모 등을 유지하도록 ( )을/를 설립할 수 있다."],
+"opts":["백업자본","원리자본적립","초기투자자금","미상각신계약비"],
+"answer":2,
+"expl":"시드머니 규모 유지를 위해 설립하는 것은 초기투자자금이다(해설: '초기투자자금에 대한 설명이다')."},
+{"id":4008,"s":5,"type":"mc","q":"다음 중 변액종신보험에 대해 틀리게 설명한 것은?",
+"opts":["특별계정펀드의 운용실적에 따라 해지환급금이 매일 변동한다.","기본사망보장 이상의 사망보험금이 지급된다.","투자수익률에 따라 (−)변액보험금이 발생할 수 있다.","보험료 납입기간은 종신이며, 단기납으로 설정할 수 없다."],
+"answer":3,
+"expl":"보험료 납입기간은 종신이지만 전납·단납·일시납 등으로 설정할 수 있다(해설) — '단기납으로 설정할 수 없다'는 ④가 틀렸다."},
+{"id":4009,"s":5,"type":"mc","q":"다음 중 변액보험 특별계정펀드의 채권형 펀드에 대해 틀리게 설명한 것은?",
+"opts":["채권 및 유동성 자산에 투자하여 안정적인 수익 확보를 목적으로 한다.","전환사채 등 주식관련 합성채권에 투자할 수 있다.","주식에 최대 30%까지 투자할 수 있다.","투자원금에 대한 손실위험이 존재한다."],
+"answer":2,
+"expl":"채권형 펀드는 주식에 투자할 수 없다(해설) — '주식에 최대 30% 투자 가능'은 틀린 설명이다."},
+{"id":4010,"s":5,"type":"mc","q":"다음 중 금융소득의 과세방법에 대해 맞게 설명한 것은?",
+"opts":["금융소득에는 이자는 포함되지만, 배당은 포함되지 않는다.","금융소득 종합과세가 적용되는 기준금액은 부부의 소득을 합산하여 계산한다.","금융소득이 1천만원인 경우 종합과세한다.","금융소득이 종합과세되는 경우, 다른 소득과 합산하여 소득세율을 적용한다."],
+"answer":3,"rv":1,
+"expl":"④가 맞다. ① 금융소득은 이자와 배당을 총칭하고, ② 종합과세는 개인별로 판단하며, ③ 1천만원인 경우 분리과세로 과세가 종결된다(해설). 정답표 판독과 상이하니 원본 대조를 권장합니다."},
+{"id":4011,"s":5,"type":"mc","q":"다음 중 단기금융상품에 대해 틀리게 설명한 것은?",
+"opts":["대규모 거래가 이루어지기 때문에 유동성이 비교적 높다.","만기가 길어 금리변동에 따른 가격변동위험이 크다.","신용도가 낮은 기업도 채권을 발행하기 때문에 채무불이행 위험이 따른다.","투자위험 회피를 위해 파생금융상품에 대한 투자가 병행된다."],
+"answer":1,"rv":1,
+"expl":"단기금융상품은 만기가 짧다 — '만기가 길어 가격변동위험이 크다'는 틀린 설명이다(판독 불완전, 원본 대조 권장)."},
+{"id":4012,"s":5,"type":"mc","q":"다음 중 종신형 연금보험의 보험차익 비과세 요건에 대해 맞게 설명한 것은?",
+"opts":["50세 이후부터 사망 시까지 연금으로 수령할 것","납입할 보험료의 합계액이 1억원 이하일 것","보증기간은 납입기간의 3배 이상일 것","연금 외의 형태로 보험금을 지급하지 아니할 것"],
+"answer":3,"rv":1,
+"expl":"요건은 55세 이후부터 사망 시까지 연금으로 수령할 것(① 50세는 틀림)과 연금 외 형태 지급 금지 등이며, 납입기간·납입보험료에 대한 제한은 없다(해설) — ④가 맞다."},
+{"id":4013,"s":5,"type":"mc","q":"다음 표에서 가입 후 20년이 된 때에 피보험자가 사망한 경우, 수익자에게 지급되는 금액으로 맞는 것은?",
+"tb":["상품: 변액유니버셜연금보험(기본형) · 가입조건: 남 40세, 가입금액 500만원(전기납)","경과기간별 (납입보험료 / 특별계정적립금 / 기본사망보험금 합계): 1년 600/545/1,043 · 10년 6,000/7,272/3,069 · 20년 12,000/11,098/9,738만원","연금개시 시점(30년): 18,000 / 16,783 / 13,291만원"],
+"opts":["12,000만원","11,098만원","9,738만원","500만원"],
+"answer":0,"rv":1,
+"expl":"사망보험금 = MAX(기본사망보험금+계약자적립금 9,738만원, 이미 납입한 보험료 12,000만원) = 12,000만원(해설). 표의 판독이 불완전하니 원본 대조를 권장합니다."},
+{"id":4014,"s":5,"type":"mc","q":"다음 그림과 같이 변액보험금을 계산하는 변액보험상품으로 맞게 짝지어진 것은?",
+"opts":["변액연금보험, 변액유니버셜보험(보장형)","변액연금보험, 변액유니버셜보험(적립형)","변액종신보험, 변액유니버셜보험(보장형)","변액종신보험, 변액유니버셜보험(적립형)"],
+"answer":2,"rv":1,
+"expl":"해설: 변액종신보험, 변액유니버셜보험(보장형)에 적용된다(정답표 ③). 그래프 판독이 불완전하니 원본 대조를 권장합니다."},
+{"id":4015,"s":5,"type":"mc","q":"다음 표의 ( ) 안에 들어갈 세율(지방소득세 별도)을 순서대로 맞게 나열한 것은?",
+"tb":["종합소득 과세표준 1,400만원 이하인 경우: (가)","상속세 과세표준이 1억원 이하인 경우: (나)"],
+"opts":["(가) 6%, (나) 10%","(가) 14%, (나) 10%","(가) 10%, (나) 6%","(가) 6%, (나) 6%"],
+"answer":0,"rv":1,
+"expl":"종합소득 과세표준 1,400만원 이하는 6%, 상속세 과세표준 1억원 이하는 10%이다(해설: (가) 6%, (나) 10%)."},
+{"id":4016,"s":5,"type":"mc","q":"다음 중 우리나라의 변액보험과 관련한 법적 규제에 대해 틀리게 설명한 것은?",
+"opts":["변액보험 특별계정 펀드는 「자본시장법」상 집합투자기구 요건을 준수해야 한다.","변액보험 판매자격제도의 도입 근거는 「보험업법」에 있다.","손해보험회사도 변액보험을 판매할 수 있다.","상품투자나 자산운용방법 등이 일반보험과 상이하여 별도의 규제가 적용된다."],
+"answer":1,"rv":1,
+"expl":"판매자격제도 도입 근거는 「보험업법 시행령」과 「보험업감독규정」에 있다(해설) — ②가 틀린 설명이다. ③ 손해보험 관련 문구도 원본과 대조가 필요하다."},
+{"id":4017,"s":5,"type":"mc","q":"다음 중 변액연금보험의 투자수익률 예시표에 대해 맞게 설명한 것은?",
+"tb":["경과기간별 해지환급률: 1년 43.6% / 10년 83.8% / 20년 80.8% / 30년(연금개시) 71.2%","가입자: 남 30세 · 50세 연금개시 · 10년 일시납 · 보장기간 50만원 등"],
+"opts":["기간 경과에 따라 해지환급금도 계속 증가한다.","연금개시 시점의 연금재원은 6,000만원이다.","20년 경과 시점의 사망보험금과 계약자적립금은 동일하다.","20년 경과 시점에 계약해지 시 해지환급금은 5,000만원으로 보증된다."],
+"answer":1,"rv":1,
+"expl":"이 문항의 해설·표 판독이 심각하게 어긋나 있다(해설 행에 '증가하다 다시 감소', '전환사채' 등 다른 문항 내용이 섞여 있음). 임시로 ②를 입력했으니 반드시 원본과 대조해 수정하세요."},
+{"id":4018,"s":5,"type":"mc","q":"다음 중 변액보험 판매 시 금지사항이 아닌 것은?",
+"opts":["장래 투자수익률을 가정하여 해지환급금을 예시하는 행위","손실에 대한 보상을 약속하는 행위","타 금융상품이나 일반 보장성상품으로 오인하게 하는 행위","자사에게 유리하게 특정회사 또는 특정기간만 비교하는 행위"],
+"answer":0,"rv":1,
+"expl":"일정한 가정(예: 평균공시이율 등 3가지 수익률) 아래 해지환급금을 예시하는 행위는 가능하다(해설) — ①은 금지사항이 아니다."},
+{"id":4019,"s":5,"type":"mc","q":"다음 중 전환사채와 교환사채의 공통점에 해당하는 것은?",
+"opts":["권리행사 시 사채권자의 지위를 상실한다.","권리행사 시 무기명주식을 획득할 수 있다.","일반사채에 별도의 권리가 부여된 합성사채에 해당한다.","권리행사 시 채권발행회사의 자본금이 증가한다."],
+"answer":2,"rv":1,
+"expl":"전환사채·교환사채 모두 일반사채에 별도의 권리가 부여된 합성사채이다(③). 자본금이 증가하는 것은 전환사채이고 교환사채는 증가하지 않아(해설) ④는 공통점이 아니다."},
+{"id":4020,"s":5,"type":"mc","q":"다음 중 변액보험과 투자신탁(주식형펀드)의 공통점으로 맞는 것은?",
+"opts":["최저보증(원금) 보증을 제공한다.","예금자보호법을 적용받는다.","사업비(비용)를 매일 차감(부과)한다.","실적배당을 위해 특별계정을 운용한다."],
+"answer":3,
+"expl":"최저보증·예금자보호·사업비 차감은 변액보험만의 특징이고(해설), 두 상품 모두 실적배당을 위해 자산을 운용한다 — ④가 공통점이다."},
+{"id":4021,"s":5,"type":"mc","q":"다음 중 보험회사가 계약자의 계약 전 알릴의무 위반을 이유로 계약을 해지할 수 있는 경우에 해당하는 것은?",
+"opts":["고지 의무가 있는 사실관계를 사실대로 고지하지 않은 채 사실을 숨긴 경우","청약 시 피보험자가 해당 질병 소지자로 보여 질병소지자 표에 명기된 사항으로 보험금 지급사유가 발생하였을 때","과실이나 착오가 없이 계약 당시 계약 전 알릴의무 위반 사실을 보험회사가 알지 못한 경우","보험회사가 계약 전 알릴의무 위반 사실을 안 날로부터 1개월이 지나지 않은 경우"],
+"answer":0,"rv":1,
+"expl":"고지 의무 사실을 알면서 사실대로 고지하지 않은 경우가 해지 사유에 해당한다(정답표 ①). '안 날로부터 1개월이 지나면 해지할 수 없다'는 원칙(해설)과 연결되는 함정 보기에 유의하세요."},
+{"id":4022,"s":5,"type":"mc","q":"다음 중 금리에 대해 맞게 설명한 것은?",
+"opts":["표면금리가 높으면 채권의 만기금리도 항상 향상된다.","일반적으로 금리가 오르면 채권의 투자는 확대된다.","한국은행은 주로 '통화안정증권 금리'를 기준금리로 이용한다.","실질금리는 명목금리에서 예상 인플레이션율(물가상승률)을 차감하여 계산한다."],
+"answer":3,"rv":1,
+"expl":"실질금리 = 명목금리 − 예상 인플레이션율이다(④ 맞음). 기준금리의 즉시 반영 대상은 콜금리이고 '항상' 같은 단정은 틀린 설명이다."},
+{"id":4023,"s":5,"type":"mc","q":"다음 중 변액보험 특별계정(펀드)의 자산운용옵션에 해당하지 않는 것은 무엇인가?",
+"opts":["보험료 자동이체 기능","펀드변경 기능","보험료 평균분할투자 기능","펀드 자동재배분 기능"],
+"answer":0,"rv":1,
+"expl":"보험료 자동이체는 보험료 납입 수단이지 자산운용옵션이 아니다. 펀드변경·보험료평균분할투자·펀드자동재배분은 자산운용옵션이다."},
+{"id":4024,"s":5,"type":"mc","q":"다음 중 변액보험의 보험계약대출에 대해 틀리게 설명한 것은?",
+"opts":["보험계약대출 원리금은 매월 계약해당일에 상환해야 한다.","해약환급금의 일반범위 이내에서 보험계약대출을 받을 수 있다.","상환금액은 '상환일 + 제2영업일'에 일반계정에서 특별계정으로 투입된다.","대출금 등을 상환하지 않은 경우 보험금 지급 시 보험계약대출 원리금을 차감할 수 있다."],
+"answer":0,"rv":1,
+"expl":"보험계약대출 원리금은 언제든지 상환할 수 있다(해설) — '매월 계약해당일에 상환해야 한다'는 ①이 틀렸다."},
+{"id":4025,"s":5,"type":"mc","q":"다음 표에서 변액유니버셜 특별계정(펀드) 설정 후 3년이 경과한 시점의 연간 수수료율의 합으로 맞는 것은?",
+"tb":["1년차 누적수수료: 5%","2년차 누적수수료: 10%","3년차 누적수수료: 18%"],
+"opts":["3%","5%","8%","18%"],
+"answer":2,"rv":1,
+"expl":"3년째 해의 연간 수수료율 = 3년차 누적 18% − 2년차 누적 10% = 8%(③). 해설 행(18%÷3년=6%)과 어긋나 원본 대조를 권장합니다."},
+{"id":4026,"s":5,"type":"mc","q":"다음 중 변액유니버셜보험의 보험료 납입에 대해 틀리게 설명한 것은?",
+"opts":["기본적으로 보험기간과 보험료 납입기간은 동일하다.","의무납입기간 이후에는 보험료를 추가납입할 수 있다.","의무납입기간 이후에는 보험료 납입의 일시중지를 할 수 없다.","보험료를 추가납입하면 계약자 보유좌수 및 적립금이 동시에 증가한다."],
+"answer":2,"rv":1,
+"expl":"정답표 기준 ③ — 의무납입기간 이후에도 보험료 납입의 일시중지가 가능하다(판독상 '없다/있다'가 어긋남, 원본 대조 권장). 추가납입은 보험기간 중 언제든지 가능하고 선납은 의무납입기간에 한해 가능하다(해설)."},
+{"id":4027,"s":5,"type":"mc","q":"다음 중 주식 투자수익에 대한 과세에 대해 틀리게 설명한 것은? (대주주의 주식거래가 아님)",
+"opts":["주식의 매매차익에 대해서는 종합소득세로 과세한다.","유가증권시장에서 양도되는 주식에 대해서는 매도금액의 0.15%의 증권거래세를 원천징수한다.","주식 매매 시에 발생하는 위탁수수료율은 금융투자회사별로 자율로 확정하고 있다.","배당금에 대해서는 15.4%(지방소득세 포함)의 세율이 원천징수된다."],
+"answer":0,
+"expl":"소액주주의 상장주식 매매차익에 대해서는 과세하지 않는다(해설) — '종합소득세로 과세한다'는 ①이 틀린 설명이다."},
+{"id":4028,"s":5,"type":"mc","q":"다음 표에서 설명하는 단기금융시장은 무엇인가?",
+"tb":["일정한 시기가 경과한 후에 일정한 가격으로 동일 자산을 다시 매수하거나 매도할 것을 조건으로 상품거래가 이루어지는 금융시장"],
+"opts":["자산유동화증권시장","양도성예금증서시장","환매조건부채권시장","통화안정증권시장"],
+"answer":2,
+"expl":"일정 시기에 일정 가격으로 되사거나 되팔기를 조건으로 하는 거래는 환매조건부채권(RP) 시장이다."},
+{"id":4029,"s":5,"type":"mc","q":"다음 중 우선주에 대해 틀리게 설명한 것은?",
+"opts":["이익배당이나 잔여재산분배 등에서 표준이 되는 주식이다.","참가적 우선주와 비참가적 우선주로 구분된다.","누적적 우선주와 비누적적 우선주로 구분된다.","후배주의 반대되는 개념의 주식이다."],
+"answer":0,"rv":1,
+"expl":"이익배당·잔여재산분배에서 우선적 지위를 갖는 주식이 우선주이고, 표준이 되는 주식은 보통주다 — ①이 틀린 설명이다."},
+{"id":4030,"s":5,"type":"mc","q":"다음 중 변액보험의 해지 및 부활에 대해 틀리게 설명한 것은?",
+"opts":["계약부활 시 적립금은 해지 시점의 적립금을 기준으로 산출한다.","계약이 부활되더라도 해지된 기간 동안의 특별계정펀드 운용실적은 확보할 수 없다.","해약환급금에서 최저보증비용을 충당할 수 없는 경우 납입최고기간 없이 즉시 해지된다.","해약환급금은 피보험자의 나이, 보험료 납입횟수 등에 따라 달라진다."],
+"answer":2,"rv":1,
+"expl":"해약환급금에서 미납 보험료 등을 충당할 수 없는 경우에도 납입최고(독촉) 절차를 거친 후 해지한다(해설) — '즉시 해지'는 틀린 설명이다."},
+{"id":4031,"s":5,"type":"mc","q":"다음 중 변액보험의 최저보증옵션에 대해 맞게 설명한 것은?",
+"opts":["변액종신보험의 최저사망보증옵션 설정 여부는 계약자가 선택할 수 있다.","최저보증을 위해서 적립금에서 보증비용을 차감하여 별도 신탁계정 등으로 적립한다.","보증비용은 모든 회사가 동일한 수준을 적용하고 있다.","변액연금보험에서 최저사망보험금보증은 적용되지 않는다."],
+"answer":1,"rv":1,
+"expl":"적립금에서 보증비용을 차감해 별도 신탁계정 등으로 적립한다(② 맞음). 변액종신보험의 설정 여부는 계약자가 선택할 수 없고(① 틀림), 보증비용은 회사마다 다르다(③ 틀림, 해설)."},
+{"id":4032,"s":5,"type":"mc","q":"다음 표에서 설명하는 용어로 맞는 것은?",
+"tb":["통화량의 은행보유 등에 대해 대출 이자 지급이나 원리금 상환이 불가능한 상태"],
+"opts":["인플레이션","디폴트","모라토리엄","앰바고"],
+"answer":1,"rv":1,
+"expl":"이자 지급·원리금 상환이 불가능한 상태는 디폴트(채무불이행)이다(해설: '디폴트에 대한 설명이다')."},
+{"id":4033,"s":5,"type":"mc","q":"다음 중 순보험료에 대해 맞게 설명한 것은?",
+"opts":["예정이율을 기초로 산출된 보험료를 말한다.","예정사업비율에 의하여 산출된 보험료를 말한다.","위험보험료와 저축보험료를 합하여 계산한다.","만기환급금과 같이 생존 시 지급되는 보험금의 재원이다."],
+"answer":2,"rv":1,
+"expl":"순보험료는 위험보험료와 저축보험료를 합해 계산한다(③) — 문항 지문의 판독이 심각하게 불완전해 원본 대조 필수입니다."},
+{"id":4034,"s":5,"type":"mc","q":"다음 표의 사망보험금 과세방법에 대해 맞게 나열한 것은?",
+"tb":["(가) 계약자: 본인 · 피보험자: 모 · 수익자: 본인 · 보험료 실제 납입자: 본인 · 사망자: 모","(나) 계약자: 부 · 피보험자: 모 · 수익자: 본인 · 보험료 실제 납입자: 부 · 사망자: 모"],
+"opts":["(가) 상속세 과세, (나) 상속세 과세","(가) 상속세 과세, (나) 증여세 과세","(가) 과세 안 함, (나) 과세 안 함","(가) 과세 안 함, (나) 상속세 과세"],
+"answer":0,"rv":1,
+"expl":"(가)는 본인이 전액 납입하고 모의 사망으로 수령해 상속세, (나)도 피보험자(모)의 사망으로 인한 취득이므로 상속세 과세다(정답표 ①). 표 판독이 불완전하니 원본 대조를 권장합니다."},
+{"id":4035,"s":5,"type":"mc","q":"다음 중 변액보험 자산운용에 대해 맞게 설명한 것은?",
+"opts":["자산평가방법 기본원칙: 원가평가","자산운용실적 적립금 반영방법: 좌당기준가격 방법","특별계정펀드와 일반계정 자산과의 상호 매매·교환: 가능","특별계정펀드의 자산을 계약자가 직접 지시해 운용: 가능"],
+"answer":1,"rv":1,
+"expl":"운용실적의 적립금 반영은 좌당기준가격 방법으로 한다(② 맞음). 자산평가 기본원칙은 시가평가(① 틀림)이고, 계정 자산 간 상호 매매·교환은 불가능하며(③ 틀림, 해설), 계약자의 개별 종목 운용지시도 불가능하다."},
+{"id":4036,"s":5,"type":"mc","q":"다음 표의 ( ) 안에 들어갈 용어로 순서대로 맞게 나열한 것은?",
+"tb":["특별계정 유입보험료 = 순보험료 + (가)","(가) + 계약체결비용 = 순보험료 + (나)"],
+"opts":["(가) 납입 중 계약유지비용, (나) 납입 후 계약유지비용","(가) 특별계정 운용보수, (나) 납입 중 계약유지비용","(가) 납입 중 계약유지비용, (나) 특별계정 운용보수","(가) 위험보험료, (나) 납입 후 계약유지비용"],
+"answer":0,"rv":1,
+"expl":"특별계정 유입보험료 = 순보험료 + 납입 중 계약유지비용이고, (가)+계약체결비용 = 순보험료 + 납입 후 계약유지비용의 관계로 정리된다(해설 행 기준 ①)."},
+{"id":4037,"s":5,"type":"mc","q":"다음 중 생명보험협회 홈페이지에서 제공하는 변액보험 공시사항에 해당하는 것은?",
+"opts":["변액보험 가입설계서","변액보험 주요내용 확인서","계약자별 보험계약정보","변액보험 특별계정(펀드) 기준가격"],
+"answer":3,"rv":1,
+"expl":"생명보험협회 홈페이지(공시실)에서 제공하는 것은 특별계정(펀드) 기준가격·수익률 등이고, 나머지는 보험회사가 제공하는 자료이다(해설)."},
+{"id":4038,"s":5,"type":"mc","q":"다음 표에서 설명하는 용어는 무엇인가?",
+"tb":["곡물가격이 상승하는 영향으로 일반 물가가 오르는 현상"],
+"opts":["디플레이션","리플레이션","아그플레이션","스태그플레이션"],
+"answer":2,
+"expl":"곡물가격 상승이 일반 물가를 끌어올리는 현상은 아그플레이션(Agflation)이다."},
+{"id":4039,"s":5,"type":"mc","q":"다음 중 예금자보호법상 보호대상이 아닌 금융기관은?",
+"opts":["손해보험회사","투자중개업자","종합금융회사","신용협동조합"],
+"answer":2,"rv":1,
+"expl":"해설 행에 '지역농협은 비보호 금융기관'이라는 교정이 있어 ③으로 입력했다. 보기 판독과 어긋나므로 반드시 원본과 대조해 수정하세요."},
+{"id":4040,"s":5,"type":"mc","q":"다음 중 변액보험 보험료의 특별계정 투입과 관련하여 맞게 설명한 것은?",
+"opts":["보험료 납입기간 중에는 계약자가 납입한 보험료 전액을 특별계정에 투입한다.","보험료 납입기간 이후에는 월 계약해당일에 자산 입금에서 일반계정 이체료를 제외한 금액을 특별계정 적립금으로 투입한다.","계약자가 납부한 제1회 보험료는 즉시 특별계정으로 투입한다.","청약을 한 날로부터 30일 이내에 승낙된 경우에는 청약을 한 날부터 30일이 지난 날의 다음날에 특별계정에 투입한다."],
+"answer":3,"rv":1,
+"expl":"청약일로부터 30일 이내 승낙 시 제1회 보험료는 30일이 지난 날의 다음날에 투입된다(해설). 납입기간 중에는 보험료 전액이 아닌 일부만 투입되고(① 틀림), 제1회 보험료의 즉시 투입도 아니다(③ 틀림)."}
+];
+
+"use strict";
+/* ===== icons ===== */
+const I={
+home:'<svg viewBox="0 0 24 24"><path d="M4 11.5 12 4.5l8 7V20a1 1 0 0 1-1 1h-4.5v-6h-5v6H5a1 1 0 0 1-1-1z"/></svg>',
+exam:'<svg viewBox="0 0 24 24"><rect x="4" y="3.5" width="16" height="17" rx="2.5"/><path d="M8.5 8.5h7M8.5 12.5h7M8.5 16.5h4"/></svg>',
+book:'<svg viewBox="0 0 24 24"><path d="M5 4.5A1.5 1.5 0 0 1 6.5 3H19v18H6.5A1.5 1.5 0 0 1 5 19.5zM5 16.5h14"/></svg>',
+note:'<svg viewBox="0 0 24 24"><path d="M20 11.5A8 8 0 1 0 17.2 17.4"/><path d="M20.5 5.5v6h-6"/></svg>',
+chart:'<svg viewBox="0 0 24 24"><path d="M5 20v-9M12 20V4M19 20v-6"/></svg>',
+star:'<svg viewBox="0 0 24 24"><path d="M12 3.6l2.6 5.3 5.8.8-4.2 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8L3.6 9.7l5.8-.8z"/></svg>',
+sun:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.2"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6l1.4 1.4M17 17l1.4 1.4M18.4 5.6 17 7M7 17l-1.4 1.4"/></svg>',
+moon:'<svg viewBox="0 0 24 24"><path d="M20 13.5A8.5 8.5 0 1 1 10.5 4a7 7 0 0 0 9.5 9.5z"/></svg>',
+check:'<svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>',
+x:'<svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>',
+chevL:'<svg viewBox="0 0 24 24"><path d="M14.5 5.5 8 12l6.5 6.5"/></svg>',
+chevR:'<svg viewBox="0 0 24 24"><path d="M9.5 5.5 16 12l-6.5 6.5"/></svg>',
+clock:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg>',
+pencil:'<svg viewBox="0 0 24 24"><path d="M4 20l4.7-1L20 7.6a1.7 1.7 0 0 0-2.4-2.4L6.2 16.6z"/></svg>',
+search:'<svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg>',
+warn:'<svg viewBox="0 0 24 24"><path d="M12 4 2.8 19.5h18.4zM12 10v4.5M12 17.2v.3"/></svg>',
+trash:'<svg viewBox="0 0 24 24"><path d="M4.5 7h15M9.5 7V4.5h5V7M7 7l1 13h8l1-13M10.5 11v5M13.5 11v5"/></svg>',
+down:'<svg viewBox="0 0 24 24"><path d="M12 4v11m0 0 4.2-4.2M12 15l-4.2-4.2M4.5 20h15"/></svg>',
+up:'<svg viewBox="0 0 24 24"><path d="M12 15V4m0 0L7.8 8.2M12 4l4.2 4.2M4.5 20h15"/></svg>',
+grid:'<svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 9h.01M12 9h.01M16 9h.01M8 13h.01M12 13h.01M16 13h.01M8 17h.01M12 17h.01"/></svg>',
+play:'<svg viewBox="0 0 24 24"><path d="M7.5 5.5v13l11-6.5z"/></svg>',
+redo:'<svg viewBox="0 0 24 24"><path d="M20 11.5A8 8 0 1 0 17.2 17.4"/><path d="M20.5 5.5v6h-6"/></svg>',
+plus:'<svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>'
+};
+function ic(n,c){return '<span class="icn '+(c||'')+'">'+I[n]+'</span>'}
+const NUM=["①","②","③","④"], OXK=["O","X"];
+const ALL=[...QUESTIONS,...(window.QUESTIONS2||[]),...(window.QUESTIONS3||[]),...(window.QUESTIONS4||[]),...(window.QUESTIONS5||[])].map(q=>{if(!q.s){q.s=1;q.n=q.id}else{q.n=q.id-1000*(q.s-1)}return q});
+const qn=q=>q.n;
+function esc(s){return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;")}
+function fmtDur(ms){const s=Math.round(ms/1000),m=Math.floor(s/60);return (m?m+"분 ":"")+(s%60)+"초"}
+function fmtDate(t){const d=new Date(t);const p=n=>String(n).padStart(2,"0");return (d.getMonth()+1)+"."+p(d.getDate())+" "+p(d.getHours())+":"+p(d.getMinutes())}
+
+/* ===== store ===== */
+const KEY="vba_mock1_v1";
+const DEF={bookmarks:[],wrong:{},stats:{},history:[],edits:{},settings:{dark:false,autoRemove:true},progress:null};
+const CLONE=o=>JSON.parse(JSON.stringify(o));
+function load(){try{const r=JSON.parse(localStorage.getItem(KEY));if(r)return Object.assign(CLONE(DEF),r)}catch(e){}return CLONE(DEF)}
+let S=load();
+function save(){localStorage.setItem(KEY,JSON.stringify(S))}
+
+function QQ(id){const q=ALL.find(x=>x.id===id);const e=S.edits[id];return e?Object.assign({},q,e):q}
+function allQ(){return ALL.map(q=>QQ(q.id))}
+function isStar(id){return S.bookmarks.includes(id)}
+function toggleStar(id){const i=S.bookmarks.indexOf(id);if(i>-1)S.bookmarks.splice(i,1);else S.bookmarks.push(id);save()}
+function isCorrect(q,a){return a!==undefined&&a!==null&&a===q.answer}
+
+/* ===== state ===== */
+let V={tab:"home"};
+let X=null; // session
+let UI={bf:"all",bs:"",setup:{range:"all",count:"10",random:true,instant:true},showExpl:true};
+if(S.settings.dark)document.documentElement.dataset.theme="dark";
+
+/* ===== session ===== */
+function startSession(ids,mode,instant,set){
+  if(!ids.length){toast("풀 수 있는 문항이 없어요");return}
+  X={mode,instant:!!instant,set:set||null,ids:ids.slice(),idx:0,ans:{},revealed:{},startAt:Date.now(),
+     deadline:mode==="real"?Date.now()+60*60*1000:null,submitted:false,result:null};
+  persistP();V.tab="exam";render();window.scrollTo(0,0)
+}
+function persistP(){S.progress=X&&!X.submitted?JSON.parse(JSON.stringify(X)):null;save()}
+function curQ(){return QQ(X.ids[X.idx])}
+function answer(v){
+  const q=curQ();if(X.revealed[q.id])return;
+  X.ans[q.id]=v;
+  if(X.instant)X.revealed[q.id]=true;
+  persistP();
+  renderExamCard();
+}
+function move(d){const n=X.idx+d;if(n<0||n>=X.ids.length)return;X.idx=n;persistP();renderExamCard();window.scrollTo({top:0,behavior:"smooth"})}
+function jump(i){X.idx=i;persistP();closeSheet();renderExamCard();window.scrollTo({top:0,behavior:"smooth"})}
+function finishExam(){
+  if(!X||X.submitted)return;
+  const per=X.ids.map(id=>{const q=QQ(id),a=X.ans[id];return {id,ok:isCorrect(q,a),un:a===undefined}});
+  const ok=per.filter(p=>p.ok).length;
+  const score=Math.round(ok*2.5*10)/10;
+  X.result={per,ok,score,unanswered:per.filter(p=>p.un).length};
+  per.forEach(p=>{
+    const st=S.stats[p.id]||{a:0,c:0};st.a++;if(p.ok)st.c++;S.stats[p.id]=st;
+    if(p.ok){if(S.settings.autoRemove)delete S.wrong[p.id]}
+    else{const w=S.wrong[p.id]||{c:0,t:0};w.c++;w.t=Date.now();S.wrong[p.id]=w}
+  });
+  S.history.unshift({d:Date.now(),mode:X.mode,set:X.set,score,ok,n:X.ids.length,dur:Date.now()-X.startAt});
+  if(S.history.length>50)S.history.length=50;
+  X.submitted=true;S.progress=null;save();
+}
+function submitFlow(){
+  const un=X.ids.filter(id=>X.ans[id]===undefined).length;
+  if(un>0){openModal('<h3>미응답 문항이 있어요</h3><p>'+un+"문항에 답하지 않았어요. 미응답은 오답으로 처리됩니다.</p>"+
+    '<div class="modal-acts"><button class="btn" data-act="modal-close">계속 풀기</button><button class="btn pri" data-act="do-submit">제출하기</button></div>')}
+  else doSubmit();
+}
+function doSubmit(){closeModal();finishExam();V.tab="exam";render();window.scrollTo(0,0)}
+
+/* ===== render helpers ===== */
+function omrGrid(ids,ansMap,cls,okMap,curIdx){
+  return '<div class="omrgrid '+(cls||"")+'">'+ids.map((id,i)=>{
+    let c="cell",a=ansMap?ansMap[id]:undefined;
+    if(okMap){c+=okMap[id]===undefined?"":(okMap[id]?" ok":" no");if(okMap[id]===undefined&&a!==undefined)c+=" blank";if(okMap[id]===undefined&&a===undefined)c+=" blank"}
+    else if(a!==undefined)c+=" filled";
+    if(curIdx===i)c+=" cur";
+    return '<button class="'+c+'" data-act="jump" data-i="'+i+'" title="'+qn(QQ(id))+'번">'+qn(QQ(id))+"</button>"
+  }).join("")+"</div>"
+}
+function starBtnHTML(q,extra){
+  return '<button class="starbtn'+(isStar(q.id)?" on":"")+'" data-act="star" data-id="'+q.id+'" aria-label="즐겨찾기">'+ic("star")+"</button>"
+}
+function reviewChip(q){return q.rv?'<span class="chip warn" title="이미지 판독 기반 문항입니다. 원본과 대조해 확인하고 연필 버튼으로 수정할 수 있어요.">'+ic("warn")+'판독 검토</span>':""}
+function editedChip(q){return S.edits[q.id]?'<span class="badge ok">'+ic("check")+'수정됨</span>':""}
+function explHTML(q,ansIdx){
+  const a=q.type==="ox"?q.answer:NUM[q.answer];
+  return '<div class="expl'+(q.expl?"":" none")+'"><b>정답 '+a+'</b>'+(q.expl?" — "+esc(q.expl):"<br>등록된 해설이 없습니다.")+"</div>"
+}
+function qBody(q,ansIdx,showAns,optsHTML){
+  let h="";
+  if(q.tb)h+='<div class="tbox">'+q.tb.map(t=>"<div>"+esc(t)+"</div>").join("")+"</div>";
+  h+=optsHTML;
+  if(showAns)h+=explHTML(q,ansIdx);
+  return h
+}
+function mcOptsHTML(q,sel,lock,ok){
+  return '<div class="opts">'+q.opts.map((o,i)=>{
+    let c="opt";let tail="";
+    if(lock){
+      if(i===q.answer){c+=" good";tail=ic("check")}
+      else if(i===sel){c+=" bad";tail=ic("x")}
+      c+=" lock"
+    }else if(i===sel){c+=" sel"}
+    return '<button class="'+c+'" data-act="ans" data-v="'+i+'"><span class="mark">'+NUM[i]+"</span><span>"+esc(o)+"</span>"+(tail?'<span class="tail">'+tail+"</span>":"")+"</button>"
+  }).join("")+"</div>"
+}
+function oxOptsHTML(q,sel,lock){
+  return '<div class="ox">'+OXK.map((k,i)=>{
+    let c="opt";let tail="";
+    if(lock){if(k===q.answer){c+=" good";tail=ic("check")}else if(k===sel){c+=" bad";tail=ic("x")}c+=" lock"}
+    else if(k===sel){c+=" sel"}
+    return '<button class="'+c+'" data-act="ans" data-v="'+k+'"><span>'+k+"</span>"+(tail?'<span class="tail">'+tail+"</span>":"")+"</button>"
+  }).join("")+"</div>"
+}
+function qCardFull(q){
+  const optsHTML=q.type==="mc"?mcOptsHTML(q,null,false):oxOptsHTML(q,null,false);
+  return '<div class="card qcard"><div class="pad"><div class="qhead"><span class="qno">'+qn(q)+'번</span><span class="qtype">'+(q.type==="ox"?"O·X형":"객관식")+"</span>"+editedChip(q)+reviewChip(q)+
+  '<span class="qtools">'+starBtnHTML(q)+'<button class="mini" data-act="edit" data-id="'+q.id+'" aria-label="문항 수정">'+ic("pencil")+"</button></span></div>"+
+  '<div class="qtext">'+esc(q.q)+"</div>"+qBody(q,null,true,optsHTML)+"</div></div>"
+}
+
+/* ===== screens ===== */
+function wrongCount(){return Object.keys(S.wrong).length}
+function renderHome(){
+  const last=S.history[0];
+  const best=S.history.reduce((m,h)=>Math.max(m,h.score),null);
+  const qact=[
+    ["exam","모의고사","회차 선택 · 연습 설정","gotoExam"],
+    ["redo","오답노트 복습",wrongCount()?wrongCount()+"문제":"저장된 오답 없음","retakeWrong"],
+    ["star","즐겨찾기 복습",S.bookmarks.length?S.bookmarks.length+"문제":"저장된 문제 없음","retakeStar"],
+    ["play","랜덤 연습","10문항 · 즉시 채점","random10"]
+  ];
+  let h='<div class="card hero"><div class="eyebrow">2026 자격시험 대비</div><h2>변액보험 판매관리사<br>실전모의고사 1~5회</h2>'+
+  '<div class="meta">각 회차 40문항 · 100점 만점(문항당 2.5점) · 60점 합격</div>'+
+  (S.progress?'<button class="go" data-act="resume">'+ic("play")+"이어서 풀기 ("+String(Object.keys(S.progress.ans).length)+" / "+S.progress.ids.length+"문항)</button>":
+  '<div class="btnrow"><button class="go" data-act="startReal" data-set="1">'+ic("play")+"실전모의고사 제1회 시작</button><button class='go alt' data-act='startReal' data-set='2'>실전모의고사 제2회 시작</button><button class='go alt' data-act='startReal' data-set='3'>실전모의고사 제3회 시작</button><button class='go alt' data-act='startReal' data-set='4'>실전모의고사 제4회 시작</button><button class='go alt' data-act='startReal' data-set='5'>실전모의고사 제5회 시작</button></div>")+"</div>";
+  h+='<div class="sec-title">학습 현황</div><div class="statrow">'+
+  '<div class="stat"><b>'+(S.history.length?best:"—")+'</b><span>최고 점수</span></div>'+
+  '<div class="stat"><b>'+S.history.length+'</b><span>응시 횟수</span></div>'+
+  '<div class="stat"><b>'+wrongCount()+'</b><span>오답노트</span></div>'+
+  '<div class="stat"><b>'+S.bookmarks.length+'</b><span>즐겨찾기</span></div></div>';
+  h+='<div class="sec-title">바로 가기</div><div class="qgrid">'+
+  qact.map(a=>'<button class="qact" data-act="'+a[3]+'">'+ic(a[0])+"<b>"+a[1]+"</b><span>"+a[2]+"</span></button>").join("")+"</div>";
+  h+='<div class="sec-title">안내</div><div class="notice">'+ic("warn")+'<span>제1~5회 200문항을 첨부 이미지(모의고사 스캔본)에서 판독해 입력했습니다. 제5회는 정답표·해설의 행 어긋남이 커서 해설 교정문·계산으로 정답을 확정했고, 판독 검토 표시 문항은 원본 대조를 권합니다. 일부 문항은 판독이 불확실할 수 있어요 — 문제은행에서 각 문항의 연필 버튼으로 정답·해설을 직접 수정할 수 있습니다.</span></div>';
+  return h
+}
+function renderExamSetup(){
+  const su=UI.setup;
+  const chip=(grp,val,label)=>'<button class="chip'+(su[grp]===val?" on":"")+'" data-act="setup" data-g="'+grp+'" data-v="'+val+'">'+label+"</button>";
+  let h='<div class="sec-title">실전</div>'+[1,2,3,4,5].map(st=>'<div class="card pad" style="margin-bottom:10px"><div style="display:flex;align-items:center;gap:12px">'+
+  '<div style="flex:1"><b style="font-size:15.5px">실전모의고사 제'+st+'회</b><p class="muted" style="font-size:12.5px;margin-top:2px">40문항 · 60분 제한 · 문항당 2.5점</p></div>'+
+  '<button class="btn pri" data-act="startReal" data-set="'+st+'">시작</button></div></div>').join("");
+  h+='<div class="sec-title">연습</div><div class="card pad">'+
+  '<div class="field"><label>범위</label><div class="chip row">'+chip("range","all","전체 "+allQ().length)+chip("range","s1","제1회")+chip("range","s2","제2회")+chip("range","s3","제3회")+chip("range","s4","제4회")+chip("range","s5","제5회")+chip("range","s1a","1회 1~20")+chip("range","s1b","1회 21~40")+chip("range","s2a","2회 1~20")+chip("range","s2b","2회 21~40")+chip("range","s3a","3회 1~20")+chip("range","s3b","3회 21~40")+chip("range","s4a","4회 1~20")+chip("range","s4b","4회 21~40")+chip("range","s5a","5회 1~20")+chip("range","s5b","5회 21~40")+chip("range","star","즐겨찾기")+chip("range","wrong","오답")+"</div></div>"+
+  '<div class="field"><label>문항 수</label><div class="chip row">'+chip("count","10","10문항")+chip("count","20","20문항")+chip("count","all","전체")+"</div></div>"+
+  '<div class="field"><label>방식</label><div class="chip row">'+chip("random",true,"랜덤 순서")+chip("random",false,"번호 순")+chip("instant",true,"즉시 채점")+chip("instant",false,"제출 후 채점")+"</div></div>"+
+  '<button class="btn pri wide" data-act="startPractice">연습 시작</button></div>';
+  if(S.progress)h='<div class="resume">'+ic("clock")+'<span>진행 중인 시험이 있어요 ('+Object.keys(S.progress.ans).length+" / "+S.progress.ids.length+"문항)</span><button class=\"btn sm pri\" data-act=\"resume\">이어하기</button></div>"+h;
+  return h
+}
+function renderExamCard(){
+  const q=curQ();
+  const sel=X.ans[q.id],lock=X.revealed[q.id];
+  const optsHTML=q.type==="mc"?mcOptsHTML(q,sel,lock):oxOptsHTML(q,sel,lock);
+  document.getElementById("xcard").innerHTML=
+  '<div class="qhead"><span class="qno">'+qn(q)+'번</span><span class="qtype">'+(q.type==="ox"?"O·X형":"객관식")+"</span>"+editedChip(q)+reviewChip(q)+
+  '<span class="qtools">'+starBtnHTML(q)+"</span></div>"+
+  '<div class="qtext">'+esc(q.q)+"</div>"+qBody(q,sel,lock,optsHTML);
+  document.getElementById("xprog").textContent=(X.idx+1)+" / "+X.ids.length;
+  const done=X.ids.filter(id=>X.ans[id]!==undefined).length;
+  document.getElementById("xprev").disabled=X.idx===0;
+  document.getElementById("xnext").innerHTML=X.idx===X.ids.length-1?"제출하기":"다음 "+ic("chevR");
+  const sb=document.querySelector("#xcard .starbtn");if(sb)sb.classList.toggle("on",isStar(q.id));
+}
+function goExam(){const r=renderExam();if(typeof r==="string")document.getElementById("screen").innerHTML=r}
+function renderExam(){
+  if(!X){return renderExamSetup()}
+  if(X.submitted)return renderResult();
+  let h='<div class="xbar"><button class="iconbtn" data-act="quit" aria-label="시험 종료">'+ic("x")+"</button>"+
+  '<span class="prog" id="xprog"></span>'+
+  '<span class="timer" id="xtimer">'+ic("clock")+'<span id="tval">--:--</span></span></div>'+
+  '<div class="card" id="xcard" style="padding:18px"></div>'+
+  '<div class="xnav"><div class="in"><button class="btn" id="xprev" data-act="prev">'+ic("chevL")+'이전</button>'+
+  '<button class="btn omr" data-act="sheet">'+ic("grid")+'답안지</button>'+
+  '<button class="btn pri" id="xnext" data-act="next"></button></div></div>';
+  document.getElementById("screen").innerHTML=h;renderExamCard();tickTimer();
+}
+function renderResult(){
+  const r=X.result,fail=r.score<60;
+  let h='<div class="card gauge-wrap"><div class="rlabel">'+(X.set?"제"+X.set+"회 실전모의고사":"연습")+' 결과</div><div class="gauge'+(fail?" fail":"")+'">'+
+  '<svg viewBox="0 0 120 120"><circle class="track" cx="60" cy="60" r="52"/><circle class="val" cx="60" cy="60" r="52" stroke-dasharray="326.7" stroke-dashoffset="'+(326.7*(1-r.score/100)).toFixed(1)+'"/></svg>'+
+  '<div class="mid"><b>'+r.score+'</b><span>100점 만점</span></div></div>'+
+  '<span class="badge '+(fail?"no":"ok")+'" style="font-size:14px;padding:7px 16px">'+(fail?"불합격 — "+(60-r.score)+"점 부족":"합격 충족 (60점 이상)")+"</span>"+
+  '<div class="rsum"><div class="stat"><b>'+r.ok+'</b><span>정답</span></div><div class="stat"><b>'+(X.ids.length-r.ok-r.unanswered)+'</b><span>오답</span></div>'+
+  '<div class="stat"><b>'+r.unanswered+'</b><span>미응답</span></div><div class="stat"><b>'+fmtDur(Date.now()-X.startAt)+'</b><span>소요</span></div></div></div>';
+  h+='<div class="sec-title">답안지</div><div class="card pad">'+omrGrid(X.ids,X.ans,"g40",r.per.reduce((m,p)=>(m[p.id]=p.ok,m),{}))+"</div>";
+  const wids=r.per.filter(p=>!p.ok).map(p=>p.id);
+  if(wids.length)h+='<div class="notice" style="margin-top:14px">'+ic("warn")+'<span><b>'+wids.length+'</b>문항을 오답노트에 저장했어요'+(S.settings.autoRemove?" — 다음 복습 때 맞히면 자동으로 해제됩니다.":"")+'</span><button class="btn sm pri" data-act="retakeWrong">오답만 다시 풀기</button></div>';
+  h+='<div class="sec-title">정답 · 해설</div>';
+  UI.showExpl=true;
+  X.ids.forEach(id=>{const q=QQ(id);const p=r.per.find(x=>x.id===id);
+    h+='<div class="card qcard"><div class="pad"><div class="qhead"><span class="qno">'+qn(q)+'번</span><span class="badge '+(p.ok?"ok":"no")+'">'+(p.un?"미응답":p.ok?"정답":"오답")+"</span>"+editedChip(q)+reviewChip(q)+
+    '<span class="qtools">'+starBtnHTML(q)+"</span></div>"+
+    '<div class="qtext">'+esc(q.q)+"</div>"+qBody(q,X.ans[id],true,q.type==="mc"?mcOptsHTML(q,X.ans[id],true):oxOptsHTML(q,X.ans[id],true))+"</div></div>"
+  });
+  h+='<div style="display:flex;gap:9px;margin-top:16px"><button class="btn wide" data-act="go-home">홈으로</button><button class="btn pri wide" data-act="retakeWrong">오답 복습</button></div>';
+  document.getElementById("screen").innerHTML=h;
+}
+function renderBank(){
+  let list=allQ();
+  if(UI.bf==="star")list=list.filter(q=>isStar(q.id));
+  if(UI.bf==="wrong")list=list.filter(q=>S.wrong[q.id]);
+  if(UI.bf==="hot")list=list.filter(q=>S.wrong[q.id]&&S.wrong[q.id].c>=2);
+  if(UI.bf==="ox")list=list.filter(q=>q.type==="ox");
+  if(UI.bs){const k=UI.bs.toLowerCase();list=list.filter(q=>(q.q+" "+(q.opts||[]).join(" ")+" "+(q.tb||[]).join(" ")+" "+(q.expl||"")).toLowerCase().includes(k))}
+  const chip=(v,l)=>'<button class="chip'+(UI.bf===v?" on":"")+'" data-act="bfilter" data-v="'+v+'">'+l+"</button>";
+  let h='<div class="search">'+ic("search")+'<input id="bsearch" type="text" placeholder="문제·보기·해설 검색" value="'+esc(UI.bs)+'"></div>'+
+  '<div class="chip row">'+chip("all","전체 "+allQ().length)+chip("star","즐겨찾기 "+(S.bookmarks.length||""))+chip("wrong","오답 "+wrongCount())+chip("hot","자주 틀림")+chip("ox","O·X형")+"</div>"+
+  '<p class="muted" style="font-size:12px;margin:10px 2px 0">전체 문항에 정답과 해설이 표시됩니다. 연필 버튼으로 문항을 수정할 수 있어요.</p><div style="height:10px"></div>';
+  if(!list.length)h+='<div class="empty">'+ic("search")+"<b>해당 문항이 없어요</b><p>검색어나 필터를 바꿔보세요</p></div>";
+  list.forEach(q=>h+=qCardFull(q));
+  document.getElementById("screen").innerHTML=h;
+  const inp=document.getElementById("bsearch");
+  inp.addEventListener("input",()=>{UI.bs=inp.value.trim();const sc=window.scrollY;renderBank();const i2=document.getElementById("bsearch");i2.focus();i2.setSelectionRange(i2.value.length,i2.value.length);window.scrollTo(0,sc)});
+}
+function renderWrong(){
+  const ids=Object.keys(S.wrong).map(Number).sort((a,b)=>S.wrong[b].c-S.wrong[a].c||S.wrong[b].t-S.wrong[a].t);
+  const hot=ids.filter(id=>S.wrong[id].c>=2);
+  let h='<div class="card pad" style="display:flex;align-items:center;gap:12px">'+
+  '<div style="flex:1"><b style="font-size:15.5px">오답노트</b><p class="muted" style="font-size:12.5px;margin-top:2px">'+ids.length+'문항 저장 중'+(S.settings.autoRemove?" · 맞히면 자동 해제":"")+'</p></div>'+
+  '<button class="btn sm" data-act="toggleAuto">'+(S.settings.autoRemove?"자동 해제 켜짐":"자동 해제 꺼짐")+'</button>'+
+  '<button class="btn sm pri" data-act="retakeWrong" '+(ids.length?"":"disabled")+'>다시 풀기</button></div>';
+  if(hot.length){
+    h+='<div class="sec-title">자주 틀리는 문제 (2회 이상)</div>';
+    hot.forEach(id=>{const q=QQ(id);h+='<div class="wrongrow"><span class="n">'+id+'</span><div class="t"><b>'+esc(q.q)+"</b><span>"+(q.type==="ox"?"O·X형":"객관식")+'</span></div><span class="cnt hot">'+S.wrong[id].c+'회</span>'+
+    '<button class="mini'+(isStar(id)?" on":"")+'" data-act="star" data-id="'+id+'">'+ic("star")+'</button><button class="mini" data-act="delwrong" data-id="'+id+'">'+ic("trash")+"</button></div>"});
+  }
+  h+='<div class="sec-title">저장된 오답 ('+ids.length+')</div>';
+  if(!ids.length)h+='<div class="empty">'+ic("check")+"<b>오답이 비어 있어요</b><p>시험·연습에서 틀린 문항이 자동으로 모입니다</p></div>";
+  ids.forEach(id=>{const q=QQ(id);const w=S.wrong[id];
+    h+='<div class="card qcard"><div class="pad"><div class="qhead"><span class="qno">'+qn(q)+'번</span><span class="qtype">'+(q.type==="ox"?"O·X형":"객관식")+' · 최근 '+fmtDate(w.t)+"</span>"+reviewChip(q)+
+    '<span class="qtools"><span class="cnt'+(w.c>=2?" hot":"")+'" style="margin-right:2px">'+w.c+'회</span>'+starBtnHTML(q)+'<button class="mini" data-act="delwrong" data-id="'+id+'">'+ic("trash")+"</button></span></div>"+
+    '<div class="qtext">'+esc(q.q)+"</div>"+(q.tb?'<div class="tbox">'+q.tb.map(t=>"<div>"+esc(t)+"</div>").join("")+"</div>":"")+
+    '<div class="expl'+(q.expl?"":" none")+'"><b>정답 '+(q.type==="ox"?q.answer:NUM[q.answer])+"</b>"+(q.expl?" — "+esc(q.expl):"<br>등록된 해설이 없습니다.")+"</div></div></div>"
+  });
+  document.getElementById("screen").innerHTML=h;
+}
+function renderStats(){
+  const hs=S.history;
+  let h='<div class="sec-title">요약</div><div class="statrow">'+
+  '<div class="stat"><b>'+hs.length+'</b><span>응시</span></div>'+
+  '<div class="stat"><b>'+(hs.length?Math.round(hs.reduce((a,x)=>a+x.score,0)/hs.length*10)/10:"—")+'</b><span>평균 점수</span></div>'+
+  '<div class="stat"><b>'+(hs.length?Math.max(...hs.map(x=>x.score)):"—")+'</b><span>최고</span></div>'+
+  '<div class="stat"><b>'+wrongCount()+'</b><span>오답</span></div></div>';
+  const last=hs.slice(0,10).reverse();
+  if(last.length){h+='<div class="sec-title">점수 추이 (최근 '+last.length+'회)</div><div class="card trend">'+
+    last.map((x,i)=>{const n=hs.length-last.length+i+1;const ht=Math.max(6,Math.round(x.score));return '<div class="bar"><i class="'+(x.score>=60?"pri":"")+'" style="height:'+ht+'%" title="'+x.score+'점"></i><span>'+n+"</span></div>"}).join("")+"</div>"}
+  h+='<div class="sec-title">문항별 정답률</div><div class="card pad">'+
+  '<div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:12px">'+
+  '<span class="cell heat1" style="width:26px;cursor:default">낮음</span><span class="cell heat3" style="width:26px;cursor:default">보통</span><span class="cell heat4" style="width:26px;cursor:default">높음</span></div>'+
+  [1,2,3,4,5].map(stn=>'<div class="setlabel">제'+stn+'회</div><div class="omrgrid g40">'+ALL.filter(q=>q.s===stn).map(q=>{const st=S.stats[q.id];
+    if(!st||!st.a)return '<span class="cell" style="cursor:default" title="'+qn(q)+'번: 기록 없음">'+qn(q)+"</span>";
+    const r=st.c/st.a;const c=r<0.5?"heat1":r<0.8?"heat2":r<1?"heat3":"heat4";
+    return '<span class="cell '+c+'" style="cursor:default" title="'+qn(q)+"번: "+st.c+"/"+st.a+" ("+Math.round(r*100)+'%)">'+qn(q)+"</span>"}).join("")+"</div>").join("")+"</div></div>";
+  h+='<div class="sec-title">시험 이력</div><div class="card hist">';
+  if(!hs.length)h+='<div class="empty">'+ic("chart")+"<b>기록이 아직 없어요</b><p>실전 모의고사를 응시하면 점수가 쌓입니다</p></div>";
+  hs.forEach(x=>{h+='<div class="row"><span class="muted" style="font-size:12px;width:88px;flex:none">'+fmtDate(x.d)+'</span><span>'+(x.mode==="real"?(x.set?"제"+x.set+"회 실전":"실전"):"연습")+' · '+x.ok+"/"+x.n+' · '+fmtDur(x.dur)+'</span><span class="sc '+(x.score>=60?"pass":"fail")+'">'+x.score+"점</span></div>"});
+  h+="</div>";
+  h+='<div class="sec-title">데이터 관리</div><div class="card pad" style="display:flex;gap:9px;flex-wrap:wrap">'+
+  '<button class="btn sm" data-act="export">'+ic("down")+'백업 내보내기</button>'+
+  '<button class="btn sm" data-act="import">'+ic("up")+'백업 가져오기</button>'+
+  '<button class="btn sm danger" data-act="resetall">'+ic("trash")+"전체 초기화</button>"+
+  '<input type="file" id="impfile" accept=".json,application/json" style="display:none"></div>';
+  document.getElementById("screen").innerHTML=h;
+}
+function render(){
+  document.querySelectorAll("#tabbar .tab").forEach(b=>b.classList.toggle("on",b.dataset.tab===V.tab));
+  const scr=document.getElementById("screen");
+  if(V.tab==="home")scr.innerHTML=renderHome();
+  else if(V.tab==="exam")goExam();
+  else if(V.tab==="bank")renderBank();
+  else if(V.tab==="wrong")renderWrong();
+  else if(V.tab==="stats")renderStats();
+  document.querySelector('.tab[data-tab="wrong"] .dot').style.display=wrongCount()?"grid":"none";
+  document.querySelector('.tab[data-tab="wrong"] .dot').textContent=wrongCount();
+  updateDarkBtn();
+}
+
+/* ===== timer ===== */
+let tInt=null;
+function tickTimer(){
+  if(tInt){clearInterval(tInt);tInt=null}
+  if(!X||X.submitted||V.tab!=="exam")return;
+  const upd=()=>{
+    const el=document.getElementById("tval");if(!el)return;
+    if(X.mode==="real"){
+      const left=X.deadline-Date.now();
+      if(left<=0){finishExam();render();return}
+      const m=Math.floor(left/60000),s=Math.floor(left%60000/1000);
+      el.textContent=String(m).padStart(2,"0")+":"+String(s).padStart(2,"0");
+      document.getElementById("xtimer").classList.toggle("low",left<5*60000)
+    }else{
+      const el2=Math.floor((Date.now()-X.startAt)/1000);
+      el.textContent=String(Math.floor(el2/60)).padStart(2,"0")+":"+String(el2%60).padStart(2,"0")
+    }
+  };
+  upd();tInt=setInterval(upd,1000);
+}
+setInterval(()=>{if(V.tab==="exam"&&X&&!X.submitted)tickTimer()},2000);
+
+/* ===== sheet / modal / toast ===== */
+function openSheet(){
+  const done=X.ids.filter(id=>X.ans[id]!==undefined).length;
+  document.getElementById("sheet").innerHTML='<div class="sheet-bg" data-act="sheet-close"></div>'+
+  '<div class="sheet-card"><div class="sheet-grip"></div><div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">'+
+  '<b>답안지 · '+done+" / "+X.ids.length+' 응답</b><button class="btn sm" data-act="sheet-close">'+ic("x")+"닫기</button></div>"+
+  omrGrid(X.ids,X.ans,"g40",null,X.idx)+
+  '<button class="btn pri wide" style="margin-top:16px" data-act="submit">제출하고 채점하기</button></div>';
+  document.getElementById("sheet").classList.remove("hidden")
+}
+function closeSheet(){document.getElementById("sheet").classList.add("hidden")}
+function openModal(html){document.getElementById("modalCard").innerHTML=html;document.getElementById("modal").classList.remove("hidden")}
+function closeModal(){document.getElementById("modal").classList.add("hidden")}
+let toastT=null;
+function toast(m){const t=document.getElementById("toast");t.textContent=m;t.classList.remove("hidden");clearTimeout(toastT);toastT=setTimeout(()=>t.classList.add("hidden"),1800)}
+
+/* ===== edit ===== */
+function openEdit(id){
+  const q=QQ(id);
+  const opts=(q.opts||["","","",""]).map((o,i)=>'<div class="field"><label>'+(q.type==="mc"?NUM[i]+" 보기":"")+"</label>"+(q.type==="mc"?'<input type="text" id="eo'+i+'" value="'+esc(o)+'">':"")+"</div>").join("");
+  const ansPick=q.type==="ox"
+    ?'<div class="anspick"><button class="chip'+(q.answer==="O"?" on":"")+'" data-act="pickans" data-v="O">O (맞음)</button><button class="chip'+(q.answer==="X"?" on":"")+'" data-act="pickans" data-v="X">X (틀림)</button></div>'
+    :'<div class="anspick">'+NUM.map((n,i)=>'<button class="chip'+(q.answer===i?" on":"")+'" data-act="pickans" data-v="'+i+'">'+n+"</button>").join("")+"</div>";
+  window._edit={id,ans:q.answer};
+  openModal('<h3>'+qn(QQ(id))+'번 문항 수정</h3><p>이미지 판독 오류를 직접 고칠 수 있어요. 수정은 이 브라우저에 저장됩니다.</p>'+
+  '<div class="field"><label>문제</label><textarea id="eq" rows="4">'+esc(q.q)+"</textarea></div>"+
+  (q.type==="mc"?opts:"")+
+  '<div class="field"><label>정답</label>'+ansPick+"</div>"+
+  '<div class="field"><label>해설</label><textarea id="ee" rows="3">'+esc(q.expl||"")+"</textarea></div>"+
+  '<div class="modal-acts"><button class="btn" data-act="modal-close">취소</button><button class="btn pri" data-act="edit-save">저장</button></div>')
+}
+
+/* ===== actions ===== */
+function pool(range){
+  if(range==="s1")return ALL.filter(q=>q.s===1).map(q=>q.id);
+  if(range==="s2")return ALL.filter(q=>q.s===2).map(q=>q.id);
+  if(range==="s1a")return ALL.filter(q=>q.s===1&&q.id<=20).map(q=>q.id);
+  if(range==="s1b")return ALL.filter(q=>q.s===1&&q.id>20).map(q=>q.id);
+  if(range==="s2a")return ALL.filter(q=>q.s===2&&q.n<=20).map(q=>q.id);
+  if(range==="s2b")return ALL.filter(q=>q.s===2&&q.n>20).map(q=>q.id);
+  if(range==="s3")return ALL.filter(q=>q.s===3).map(q=>q.id);
+  if(range==="s3a")return ALL.filter(q=>q.s===3&&q.n<=20).map(q=>q.id);
+  if(range==="s3b")return ALL.filter(q=>q.s===3&&q.n>20).map(q=>q.id);
+  if(range==="s4")return ALL.filter(q=>q.s===4).map(q=>q.id);
+  if(range==="s4a")return ALL.filter(q=>q.s===4&&q.n<=20).map(q=>q.id);
+  if(range==="s4b")return ALL.filter(q=>q.s===4&&q.n>20).map(q=>q.id);
+  if(range==="s5")return ALL.filter(q=>q.s===5).map(q=>q.id);
+  if(range==="s5a")return ALL.filter(q=>q.s===5&&q.n<=20).map(q=>q.id);
+  if(range==="s5b")return ALL.filter(q=>q.s===5&&q.n>20).map(q=>q.id);
+  if(range==="star")return S.bookmarks.slice();
+  if(range==="wrong")return Object.keys(S.wrong).map(Number);
+  return ALL.map(q=>q.id)
+}
+document.addEventListener("click",e=>{
+  const el=e.target.closest("[data-act]");if(!el)return;
+  const act=el.dataset.act,id=el.dataset.id?+el.dataset.id:null;
+  switch(act){
+    case"tab":V.tab=el.dataset.tab;if(V.tab==="exam"&&X&&!X.submitted){render()}else if(V.tab==="exam"){X=null}render();window.scrollTo(0,0);break;
+    case"gotoExam":V.tab="exam";render();window.scrollTo(0,0);break;
+    case"dark":S.settings.dark=!S.settings.dark;document.documentElement.dataset.theme=S.settings.dark?"dark":"";save();updateDarkBtn();break;
+    case"startReal":{const st=+(el.dataset.set||1);startSession(ALL.filter(q=>q.s===st).map(q=>q.id),"real",false,st);break}
+    case"startPractice":{
+      let ids=pool(UI.setup.range).sort((a,b)=>a-b);
+      if(UI.setup.random)ids=ids.slice().sort(()=>Math.random()-.5);
+      const c=UI.setup.count;if(c!=="all")ids=ids.slice(0,+c);
+      startSession(ids,"practice",UI.setup.instant);break}
+    case"random10":startSession(ALL.map(q=>q.id).sort(()=>Math.random()-.5).slice(0,10),"practice",true);break;
+    case"retakeWrong":{const ids=Object.keys(S.wrong).map(Number);if(!ids.length){toast("저장된 오답이 없어요");break}startSession(ids.sort((a,b)=>a-b),"practice",false);break}
+    case"retakeStar":{const ids=S.bookmarks.slice();if(!ids.length){toast("즐겨찾기가 비어 있어요");break}startSession(ids.sort((a,b)=>a-b),"practice",true);break}
+    case"resume":X=S.progress;S.progress=null;V.tab="exam";save();render();window.scrollTo(0,0);break;
+    case"quit":openModal('<h3>시험을 종료할까요?</h3><p>지금까지의 응답은 저장되고 언제든 이어서 풀 수 있어요.</p><div class="modal-acts"><button class="btn" data-act="modal-close">계속 풀기</button><button class="btn pri" data-act="quit-save">저장하고 나가기</button></div>');break;
+    case"quit-save":closeModal();persistP();X=null;V.tab="home";render();break;
+    case"ans":answer(el.dataset.v==="O"||el.dataset.v==="X"?el.dataset.v:+el.dataset.v);break;
+    case"prev":move(-1);break;
+    case"next":if(X.idx===X.ids.length-1)submitFlow();else move(1);break;
+    case"jump":jump(+el.dataset.i);break;
+    case"sheet":openSheet();break;
+    case"sheet-close":closeSheet();break;
+    case"submit":submitFlow();break;
+    case"do-submit":doSubmit();break;
+    case"star":toggleStar(id);if(V.tab==="exam"&&!X.submitted){const sb=document.querySelector('#xcard .starbtn');if(sb&&curQ().id===id)sb.classList.toggle("on",isStar(id));if(X.revealed[curQ().id])renderExamCard()}else render();break;
+    case"go-home":X=null;V.tab="home";render();break;
+    case"bfilter":UI.bf=el.dataset.v;renderBank();break;
+    case"toggleAuto":S.settings.autoRemove=!S.settings.autoRemove;save();renderWrong();break;
+    case"delwrong":delete S.wrong[id];save();renderWrong();toast(id+"번을 오답노트에서 삭제했어요");break;
+    case"edit":openEdit(id);break;
+    case"pickans":window._edit.ans=el.dataset.v==="O"||el.dataset.v==="X"?el.dataset.v:+el.dataset.v;el.parentNode.querySelectorAll(".chip").forEach(c=>c.classList.remove("on"));el.classList.add("on");break;
+    case"edit-save":{
+      const ed={q:document.getElementById("eq").value.trim(),expl:document.getElementById("ee").value.trim(),answer:window._edit.ans};
+      const q=QQ(ed.id||window._edit.id);
+      if(q.type==="mc"){ed.opts=[0,1,2,3].map(i=>document.getElementById("eo"+i)?document.getElementById("eo"+i).value.trim():q.opts[i])}
+      S.edits[window._edit.id]=ed;save();closeModal();render();toast(qn(QQ(window._edit.id))+"번 문항을 수정했어요");break}
+    case"export":{
+      const blob=new Blob([JSON.stringify(S,null,1)],{type:"application/json"});
+      const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="변액보험모의고사_학습기록.json";a.click();toast("백업 파일을 내보냈어요");break}
+    case"import":document.getElementById("impfile").click();break;
+    case"resetall":openModal('<h3>전체 초기화</h3><p>응시 기록·오답노트·즐겨찾기·문항 수정이 모두 삭제됩니다. 되돌릴 수 없어요.</p><div class="modal-acts"><button class="btn" data-act="modal-close">취소</button><button class="btn danger" data-act="reset-go">삭제하기</button></div>');break;
+    case"reset-go":localStorage.removeItem(KEY);location.reload();break;
+    case"modal-close":closeModal();break;
+    case"setup":{const g=el.dataset.g;let v=el.dataset.v;if(v==="true")v=true;else if(v==="false")v=false;UI.setup[g]=v;goExam();break}
+  }
+});
+document.getElementById("modal").addEventListener("click",e=>{if(e.target.id==="modal")closeModal()});
+document.addEventListener("change",e=>{
+  if(e.target.id==="impfile"&&e.target.files[0]){
+    const f=new FileReader();
+    f.onload=()=>{try{const d=JSON.parse(f.result);if(!d||typeof d!=="object")throw 0;S=Object.assign(CLONE(DEF),d);save();render();toast("백업을 불러왔어요")}catch(err){toast("올바른 백업 파일이 아니에요")}};
+    f.readAsText(e.target.files[0])
+  }
+});
+document.addEventListener("keydown",e=>{
+  if(V.tab!=="exam"||!X||X.submitted)return;
+  if(e.target.tagName==="INPUT"||e.target.tagName==="TEXTAREA")return;
+  if(e.key==="ArrowLeft")move(-1);
+  else if(e.key==="ArrowRight"){if(X.idx===X.ids.length-1)submitFlow();else move(1)}
+  else if(/^[1-4]$/.test(e.key)&&curQ().type==="mc"&&!X.revealed[curQ().id])answer(+e.key-1);
+  else if((e.key==="o"||e.key==="O")&&curQ().type==="ox")answer("O");
+  else if((e.key==="x"||e.key==="X")&&curQ().type==="ox")answer("X");
+  else if(e.key==="f"||e.key==="F")toggleStar(curQ().id);
+});
+function updateDarkBtn(){document.getElementById("darkBtn").innerHTML=ic(S.settings.dark?"sun":"moon")}
+(function(){const h=(location.hash||"").replace("#","");if(["home","exam","bank","wrong","stats"].includes(h))V.tab=h})();render();
+</script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v31edd6df95cf4e85bb4c19e7a9bdbcba1788362987495" integrity="sha512-iIg7k2xntmwu6/uSb5tpc/hySgZc4eoL31yB29W6tJFo2akwjPWcEqnCEdJvGexCL0KEQwVYv5BlowfhVz26hg==" data-cf-beacon='{"version":"2024.11.0","token":"4edd5f8ec12a48cfa682ab8261b80a79","spa":2}' crossorigin="anonymous"></script>
+</body>
+</html>
