@@ -729,7 +729,7 @@ function renderHome(){
     ["star","즐겨찾기 복습",S.bookmarks.length?S.bookmarks.length+"문제":"저장된 문제 없음","retakeStar"],
     ["play","랜덤 연습","10문항 · 즉시 채점","random10"]
   ];
-  let h='<div class="card hero"><div class="eyebrow">2026 자격시험 대비</div><h2>변액보험 판매관리사<br>실전모의고사 1~5회</h2>'+
+  let h='<div class="card hero"><div class="eyebrow">2026 자격시험 대비</div><h2>변액보험 판매관리사<br>실전모의고사 1~10회</h2>'+
   '<div class="meta">각 회차 40문항 · 100점 만점(문항당 2.5점) · 60점 합격</div>'+
   (S.progress?'<button class="go" data-act="resume">'+ic("play")+"이어서 풀기 ("+String(Object.keys(S.progress.ans).length)+" / "+S.progress.ids.length+"문항)</button>":
   '<div class="btnrow"><button class="go" data-act="startReal" data-set="1">'+ic("play")+"실전모의고사 제1회 시작</button><button class='go alt' data-act='startReal' data-set='2'>실전모의고사 제2회 시작</button><button class='go alt' data-act='startReal' data-set='3'>실전모의고사 제3회 시작</button><button class='go alt' data-act='startReal' data-set='4'>실전모의고사 제4회 시작</button><button class='go alt' data-act='startReal' data-set='5'>실전모의고사 제5회 시작</button><button class='go alt' data-act='startReal' data-set='6'>실전모의고사 제6회 시작</button><button class='go alt' data-act='startReal' data-set='7'>실전모의고사 제7회 시작</button><button class='go alt' data-act='startReal' data-set='8'>실전모의고사 제8회 시작</button><button class='go alt' data-act='startReal' data-set='9'>실전모의고사 제9회 시작</button><button class='go alt' data-act='startReal' data-set='10'>실전모의고사 제10회 시작</button></div>")+"</div>";
